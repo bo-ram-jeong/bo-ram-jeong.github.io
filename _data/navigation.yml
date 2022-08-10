@@ -11,8 +11,8 @@ main:
   # - title: "Sitemap"
   #   url: /sitemap/
   
-   - title: "About"
-     url: /about/
+   - title: "Year"
+     url: /year-archive/
    - title: "Category"
      url: "/categories/"
    - title: "Tags"

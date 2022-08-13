@@ -43,31 +43,201 @@ API 개발
 
 
 <br/>
-# 게시판 목록
-**BoardList.jsx**
+# 1. BoardList.jsx
+**게시글 목록**
 <br/>
-```
+![image](https://user-images.githubusercontent.com/84834172/184496349-554a15ab-ac9f-4762-a58b-6eb4e35d0bca.png)
 
 ```
-<br/>
-**BoardDetail.jsx**
-<br/>
-```
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
+import { makeStyles } from "@material-ui/core";
+import { Box } from '@mui/material/';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';    //MUI에서 제공하는 좋아요 아이콘
+import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined';                  //MUI에서 제공하는 좋아요 댓글 아이콘
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';            //MUI에서 제공하는 좋아요 조회수 아이콘
+import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';          //MUI에서 제공하는 좋아요 사진첨부 아이콘
+    .
+    .
+    .
+const useStyles = makeStyles(() => ({     //makeStyles hook의 문법에 맞게 내용은 CSS에 작성하는 것과 같이 작성
+    writeBoxBtn: {
+        border: "2px lightgray solid",
+        color: "gray",
+        backgroundColor: "#F6F6F6",
+        fontSize: "0.9rem",
+        textAlign: "left",
+        cursor: "pointer",
+        margin: "0.3rem auto",
+    },
+}));
+
+function BoardList(props) {
+    const {
+        title,
+        boardType,
+    } = props;
+
+    const classes = useStyles();      //makeStyles hook으로 작성한 함수를 호출한 결과를 classes 변수에 저장
+    const navigate = useNavigate();
+
+    const [post, setPost] = useState([]);
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [show, setShow] = useState(false);
+
+    const handleWriteBoxShow = (value) => {
+        setShow(value);
+    }
+    const handleChange = (event, value) => {
+        setPage(value);
+
+    .
+    .
+    .
+    
+    return (
+        <div>
+            <Box border="2px lightgray solid" color="black" fontWeight="bold" fontSize="1.4rem" textAlign="left" p={1.5}>
+                {title}
+            </Box>
+            {   //HOT게시물이면 글작성박스 안보이도록
+                (boardType !== "HOT") ?
+                    <Box p={1.8} className={classes.writeBoxBtn} onClick={() => setShow(!show)}>
+                        새 글을 작성하세요.
+                        <BorderColorIcon sx={{ float: "right" }} />
+                    </Box>
+                    : null
+            }
+            {show && <WriteBox boardType={boardType} handleWriteBoxShow={handleWriteBoxShow} handleIsInitialize={handleIsInitialize} />}
+            <List sx={{ marginTop: "-0.4rem" }}>
+                {post.map(item => (
+                    <ListItem
+                        sx={{ border: "1px gray solid", height: "15vh" }}
+                        button
+                        key={item.id}
+                        onClick={() => clickBoardList(item.id)}>
+                        <div>
+                            <ListItemText primary={item.postTitle}
+                                primaryTypographyProps={{
+                                    color: 'black',
+                                    width: "30rem",
+                                    overflow: "hidden",
+                                    whiteSpace: "nowrap",
+                                    textOverflow: "ellipsis",
+                                }} />
+                            <ListItemText
+                                primary={item.postContent.replaceAll("\n", " ")}
+                                primaryTypographyProps={{
+                                    color: 'gray',
+                                    width: "30rem",
+                                    fontSize: '0.8rem',
+                                    overflow: "hidden",
+                                    whiteSpace: "nowrap",
+                                    textOverflow: "ellipsis",
+                                }} />
+                            <ListItemText primary={item.date}
+                                primaryTypographyProps={{
+                                    color: 'gray',
+                                    fontSize: '0.5rem',
+                                    width: "10rem",
+                                }} />
+                            <ListItemText primary={item.user}
+                                primaryTypographyProps={{
+                                    fontSize: '0.7rem',
+                                    width: "5rem",
+                                    color: "#C00000"
+                                }} />
+                        </div>
+                        <ListItemIcon sx={{ color: '#C00000', marginLeft: "30%" }}><FavoriteBorderOutlinedIcon sx={{ fontSize: '1rem' }} /></ListItemIcon>
+                        <ListItemText primary={item.likeCount}
+                            primaryTypographyProps={{
+                                color: '#C00000',
+                                width: "1rem",
+                                fontSize: "0.5rem",
+                                margin: "0.5rem auto auto -2.2rem"
+                            }} />
+
+                        <ListItemIcon sx={{ color: '#0CDAE0', marginLeft: "-0.5rem" }}><TextsmsOutlinedIcon sx={{ fontSize: '1rem' }} /></ListItemIcon>
+                        <ListItemText primary={item.commentCount}
+                            primaryTypographyProps={{
+                                color: '#0CDAE0',
+                                width: "1rem",
+                                fontSize: "0.5rem",
+                                margin: "0.5rem auto auto -2.2rem"
+                            }} />
+                        <ListItemIcon sx={{ color: '#6666ff', marginLeft: "-1rem" }}><VisibilityOutlinedIcon sx={{ fontSize: '1rem' }} /></ListItemIcon>
+                        <ListItemText primary={item.views}
+                            primaryTypographyProps={{
+                                color: '#6666ff',
+                                width: "1rem",
+                                fontSize: "0.5rem",
+                                margin: "0.5rem auto auto -2.2rem"
+                            }} />
+                        <ListItemIcon sx={{ color: 'gray', marginLeft: "-0.6rem" }}><InsertPhotoOutlinedIcon sx={{ fontSize: '1rem' }} /></ListItemIcon>
+                        <ListItemText primary={item.fileCount}
+                            primaryTypographyProps={{
+                                color: 'gray',
+                                width: "1rem",
+                                fontSize: "0.5rem",
+                                margin: "0.5rem auto auto -2.2rem"
+                            }} />
+
+                    </ListItem>
+                ))}
+            </List>
+
+            <Stack spacing={2} style={{ marginTop: '1.5rem' }}>
+                <Pagination count={totalPages} page={page} onChange={handleChange} />
+            </Stack>
+        </div>
+    )
+}
+export default BoardList;
 ```
 <br/>
-# Modal
+# 1.
+1번 게시글 목록을 구현한 코드에서 아래 MUI 컴포넌트를 사용하였습니다. 
+- <Box/> 
+- <List/>
+- <ListItem/>
+- <ListItemText/>
+- <ListItemIcon/>
+- <Stack/>
+MUI 컴포넌트를 사용하게 되면 Material Design 스타일의 형식으로 만들어지지만 저는 카피사이트였기 때문에 목적에 맞게 에브리타임 사이트를 카피하기 위해 저는 makeStyles()을 이용하여 디자인을 수정하였습니다. 그리고 기존에 API 개발까지 개발한 전체코드였기 때문에 일부 MUI와 관련없는 코드는 생략하였습니다.
+
+**코드**
+1번 코드정리 및 코드설명
+
+# BoardDetail.jsx
 **ModalContainer.jsx**
 <br/>
 ```
 
 ```
 <br/>
+# ModalContainer.jsx
+**Modal**
+<br/>
+```
+
+```
+<br/>
 # 마무리
-MUI 컴포넌트를 사용하면서 수고와 시간비용을 절약하며 유용하게 사용했습니다. 
-<br/>하지만 MUI를 사용하며 이 오픈 소스 컴포넌트를 가져와서 어떻게 응용하고 어떻게 내 코드에 녹일 것인지가 중요하다고 생각했기 때문에 그 부분을 고민하며 개발을 진행했던 것 같습니다.
+MUI 컴포넌트를 사용하면서 수고와 시간비용을 절약할 수 있어, 유용하게 사용하였습니다. 
+<br/>하지만 그저 MUI의 오픈 소스 코드를 재사용하는 것이 아닌, 어떻게 내 프로젝트에 맞게 커스텀하고 응용하며 어떻게 내 코드에 녹일 것인지가 중요하다고 생각했기 때문에 그 부분을 고민하며 개발을 진행했던 것 같습니다.
+<br/>다음 프로젝트엔 Bootstrap, Ant Design, semantic UI 더 다양한 UI 라이브러리를 가지고 커스텀해보고 장단점을 비교하며 
 <h5>:page_with_curl: Acknowledgments</h5>
-<a href="https://mui.com/">MUI</a>
+- <a href="https://mui.com/">MUI</a>
 
 
 

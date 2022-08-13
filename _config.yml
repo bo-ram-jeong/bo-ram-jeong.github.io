@@ -269,3 +269,4 @@ defaults:
       comments: # true
       share: true
       related: true
+      highlighter: rouge

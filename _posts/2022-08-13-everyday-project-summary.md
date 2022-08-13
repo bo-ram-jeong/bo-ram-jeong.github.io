@@ -48,10 +48,10 @@ API 개발
 # BoardList.jsx
 **게시글 목록**
 <br/><br/>
+
 ![image](https://user-images.githubusercontent.com/84834172/184496349-554a15ab-ac9f-4762-a58b-6eb4e35d0bca.png)
 
-<pre>
-<code>
+```javascript
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
@@ -206,9 +206,8 @@ function BoardList(props) {
     )
 }
 export default BoardList;
-</code>
-</pre>
-<br/>
+```
+
 # 코드
 다음 MUI 컴포넌트를 사용하였습니다. -> <Box/> <List/> <ListItem/> <ListItemText/> <ListItemIcon/> <Stack/> <br/>
 List 관련 컴포넌트 같은 경우, List 안에 ListItem 그 안에 ListItemText, ListItemIcon 컴포넌트를 배치하여 리스트 하나에 보여주고 싶은 내용들로 구성할 수 있습니다.<br/>
@@ -221,10 +220,10 @@ List 관련 컴포넌트 같은 경우, List 안에 ListItem 그 안에 ListItem
 
 # BoardDetail.jsx
 **게시글 상세**
+<br/>
 ![image](https://user-images.githubusercontent.com/84834172/184504435-7ae45957-0dca-459e-81e4-c3cbb63bb12c.png)
 
-<pre>
-<code>
+```javascript
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
@@ -353,11 +352,17 @@ function BoardDetail() {
 export default BoardDetail
 </code>
 </pre>
-<br/>
+# 코드
+추가필요
+
+# 리팩토링이 필요한 부분
+추가필요
+<br/><br/>
+
 # ModalContainer.jsx
 **Modal**
 <br/>
-```
+```javascript
 
 ```
 

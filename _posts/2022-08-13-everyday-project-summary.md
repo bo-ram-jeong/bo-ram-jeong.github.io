@@ -52,6 +52,7 @@ API 개발
 ![image](https://user-images.githubusercontent.com/84834172/184496349-554a15ab-ac9f-4762-a58b-6eb4e35d0bca.png)
 
 ```javascript
+
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
@@ -206,10 +207,11 @@ function BoardList(props) {
     )
 }
 export default BoardList;
+
 ```
 
 # 코드
-다음 MUI 컴포넌트를 사용하였습니다. -> <Box/> <List/> <ListItem/> <ListItemText/> <ListItemIcon/> <Stack/> <br/>
+다음 MUI 컴포넌트를 사용하였습니다. ```<Box/> <List/> <ListItem/> <ListItemText/> <ListItemIcon/> <Stack/>``` <br/>
 List 관련 컴포넌트 같은 경우, List 안에 ListItem 그 안에 ListItemText, ListItemIcon 컴포넌트를 배치하여 리스트 하나에 보여주고 싶은 내용들로 구성할 수 있습니다.<br/>
 그리고 List 안에 post배열은 ListItemText 등의 컴포넌트에 들어갈 데이터가 담긴 배열이므로 map을 통해 모든 리스트의 값을 가져올 수 있습니다.
 좋아요, 댓글 등과 같은 아이콘이 필요한 부분은 <a href="https://mui.com/material-ui/material-icons/#main-content">이곳</a> MUI가 제공하는 것을 사용하였습니다.
@@ -224,6 +226,7 @@ List 관련 컴포넌트 같은 경우, List 안에 ListItem 그 안에 ListItem
 ![image](https://user-images.githubusercontent.com/84834172/184504435-7ae45957-0dca-459e-81e4-c3cbb63bb12c.png)
 
 ```javascript
+
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
@@ -348,10 +351,10 @@ function BoardDetail() {
         </div>
     )
 }
-
 export default BoardDetail
-</code>
-</pre>
+
+```
+
 # 코드
 추가필요
 

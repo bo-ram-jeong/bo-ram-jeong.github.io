@@ -362,12 +362,303 @@ export default BoardDetail
 추가필요
 <br/><br/>
 
-# ModalContainer.jsx
-**Modal**
-<br/>
+# NavBar.jsx
+**Navbar 메뉴**
+
+![image](https://user-images.githubusercontent.com/84834172/184507097-2ff34f6e-6963-40dd-8058-848288e1f45a.png)
+
 ```javascript
 
+import React, { useState } from 'react'
+import ModalContainer from './ModalContainer';
+import { Link, useNavigate } from 'react-router-dom';
+import { AppBar, makeStyles, Toolbar, Typography } from "@material-ui/core";
+
+import { Search } from '@mui/icons-material';
+import { InputBase } from '@mui/material';
+// import { alpha } from '@mui/lab/node_modules/@mui/system';
+import { Avatar } from 'antd';
+
+import * as UserAPI from '../api/Users';
+import * as BoardAPI from '../api/Board';
+import { Message } from '../component/Message';
+import { SESSION_TOKEN_KEY } from '../component/Axios/Axios';
+
+const useStyles = makeStyles((theme) => ({
+  toolbar: {
+    display: "flex",
+    justifyContent: "space-between"
+  },
+  imgLogo: {
+    display: "flex",
+    margin: "1rem 1rem 1rem 2rem",
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      height: "2rem",
+      margin: "2rem 0rem",
+    },
+  },
+  textLogo: {
+    color: "black",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.4rem",
+      paddingLeft: "0.8rem"
+    },
+  },
+  schoolName: {
+    color: "black",
+    fontSize: "1.3rem",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1rem",
+      paddingLeft: "0.8rem"
+    },
+  },
+  search: {
+    color: "gray",
+    paddingLeft: "0.7rem",
+    display: "flex",
+    height: "2.5rem",
+    width: "25%",
+    marginLeft: "55%",
+    marginTop: "5px",
+    border: "2px lightgray solid",
+    // backgroundColor: alpha(theme.palette.common.white, 1),
+    borderRadius: theme.shape.borderRadius,
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+  input: {
+    marginLeft: theme.spacing(1),
+    width: "100%",
+  },
+  myImg: {
+    marginLeft: "1rem",
+    marginTop: "0.3rem",
+    cursor: "pointer",
+  },
+  adminLogout: {
+    marginLeft: "82%",
+    cursor: "pointer",
+    border: "none",
+    background: "white",
+    color: "gray",
+    textDecoration: "underline",
+  }
+}));
+
+function NavBar(props) {
+  const classes = useStyles({});
+  const navigate = useNavigate();
+  
+  const [open, setOpen] = useState(false);
+  
+  const [schoolName, setSchoolName] = useState('');
+  const [id, setId] = useState('');
+  const [name, setName] = useState('');
+  const [nickname, setNickname] = useState('');
+  
+  const [searchKeyword, setSearchKeyword] = useState('');
+  
+  let token = localStorage.getItem(SESSION_TOKEN_KEY);
+  const tokenJson = JSON.parse(atob(token.split(".")[1]));
+  .
+  .
+  .
+  return (
+    <>
+      {
+        (tokenJson.account_authority === 'MANAGER')                                                               //관리자일때,
+          ?
+          <AppBar position="fixed" style={{ background: 'white', height: "5rem" }}>
+            <Toolbar className={classes.Toolbar}>
+              <Link to='/'><Avatar alt="로고이미지" src={"/images/smallLogo.png"} className={classes.imgLogo}></Avatar></Link>
+              <div>
+                <Typography className={classes.textLogo} style={{ fontWeight:'bold', fontSize: '0.8rem', color: '#C00000' }}>
+                  에브리데이
+                </Typography>
+              </div>
+              <button className={classes.adminLogout} onClick={adminLogoutBtn}>로그아웃</button>
+            </Toolbar>
+          </AppBar>
+          :                                                                                                         //사용자일때,
+          <AppBar position="fixed" style={{ background: 'white', height: "5rem" }}>
+            <Toolbar className={classes.Toolbar}>
+              <Link to='/'><Avatar alt="로고이미지" src={"/images/smallLogo.png"} className={classes.imgLogo}></Avatar></Link>
+              <div>
+                <Typography className={classes.textLogo} style={{ fontWeight:'bold', fontSize: '0.8rem', color: '#C00000' }}>
+                  에브리데이
+                </Typography>
+                <Typography className={classes.schoolName}>
+                  {schoolName}
+                </Typography>
+              </div>
+
+              <div className={classes.search}>
+                <Search sx={{ marginTop: '0.3rem' }} />
+                <InputBase
+                  value={searchKeyword}
+                  onChange={(e) => { setSearchKeyword(e.target.value); onChangeKeyword(searchKeyword); }}
+                  placeholder="전체 게시판의 글을 검색해보세요!"
+                  className={classes.input} />
+              </div>
+              <div className={classes.myImg}>
+                <Avatar alt="My계정 이미지" src={"/images/myImg.png"}
+                  onClick={handleOpen} />
+              </div>
+              <ModalContainer
+                open={open}
+                handleClose={handleClose}
+                loginCallBack={props.loginCallBack}
+                id={id}
+                name={name}
+                nickname={nickname}
+              >
+              </ModalContainer>
+            </Toolbar>
+          </AppBar>
+      }
+    </>
+  );
+}
+export default NavBar
+
 ```
+
+# 코드
+추가필요
+
+# 리팩토링이 필요한 부분
+추가필요
+<br/><br/>
+
+# ModalContainer.jsx
+**Modal**
+
+![image](https://user-images.githubusercontent.com/84834172/184506873-f644c008-939e-4857-b382-3b4f6bc7c8ff.png)
+
+```javascript
+
+import React from 'react'
+import { useNavigate } from 'react-router-dom';
+
+import { Container, Modal, makeStyles, ListItemIcon } from "@material-ui/core";
+import ChatIcon from '@mui/icons-material/Chat';
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';                
+import TextsmsIcon from '@mui/icons-material/Textsms';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
+import List from '@mui/material/List';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+
+import { Avatar } from 'antd';
+
+const useStyles = makeStyles((theme) => ({
+    myImg: {
+        fontSize: 1rem,
+        [theme.breakpoints.down("sm")]: {
+          fontSize: 0.5rem,
+        },
+    },
+    modal: {
+        width: 200,
+        height: 470,
+        backgroundColor: "white",
+        position: "absolute",
+        top: 80,
+        right: 50,
+        margin: "auto",
+        textAlign: "center",
+        paddingTop: "3rem",
+        outline: "none",
+        [theme.breakpoints.down("sm")]: {
+        },
+    },
+}));
+
+function ModalContainer(props) {
+    const {
+        open,
+        handleClose,
+        loginCallBack,
+        id,
+        name,
+        nickname,
+    } = props;
+    
+    const classes = useStyles();
+    const navigate = useNavigate();
+    
+    const myDataList = [
+        {
+            text: "내가 쓴 글",
+            icon: <ChatIcon sx={{color:'#7FBEFF'}}/>,
+            idx: '0',
+        },
+        {
+            text: "댓글 단 글",
+            icon: <TextsmsIcon sx={{color:'#0CDAE0'}}/>,
+            idx: '1',
+        },
+        {
+            text: "좋아요 한 글",
+            icon: <FavoriteOutlinedIcon sx={{color:'#C00000'}}/>,
+            idx: '2',
+        },
+        {
+            text: "로그아웃",
+            icon: <ExitToAppIcon />,
+            idx: '3'
+        },
+        {
+            text: "탈퇴하기",
+            icon: <SentimentDissatisfiedIcon />,
+            idx: '4'
+        }
+    ]
+    .
+    .
+    .  
+    return (
+        <div>
+            <Modal
+                open={open}
+                onClose={handleClose}
+            >
+                <Container className={classes.modal}>
+                    <Avatar alt="My계정 이미지" src={"/images/myImg.png"} />
+                    <p style={{ fontWeight: "bold" }}>{nickname}</p>
+                    <div style={{ color: "gray", fontSize: "0.8rem" }}>{name}</div>
+                    <div style={{ color: "gray", fontSize: "0.8rem", marginBottom: "1rem" }}>{id}</div>
+                    <hr />
+                    <List>
+                        {myDataList.map(item => (
+                            <ListItemButton
+                                key={item.text}
+                                sx={{ padding: "0.5rem 0rem 0.5rem 0.5rem" }}
+                                onClick={(event) => handleListItemClick(event, item.idx)}
+                            >
+                                <ListItemIcon>{item.icon}</ListItemIcon>
+                                <ListItemText primary={item.text} sx={{ marginLeft: "-1rem" }} />
+                            </ListItemButton>
+                        ))}
+                    </List>
+                </Container>
+            </Modal>
+        </div>
+    )
+};
+export default ModalContainer
+
+```
+
+# 코드
+추가필요
+
+# 리팩토링이 필요한 부분
+추가필요
+<br/><br/>
 
 <br/>
 # 어려웠던 점

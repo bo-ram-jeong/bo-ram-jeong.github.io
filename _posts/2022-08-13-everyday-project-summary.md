@@ -207,12 +207,14 @@ function BoardList(props) {
 export default BoardList;
 ```
 <br/>
-# 코드 설명
-<br/>
+# 코드
 다음 MUI 컴포넌트를 사용하였습니다. -> <Box/> <List/> <ListItem/> <ListItemText/> <ListItemIcon/> <Stack/> <br/>
 List 관련 컴포넌트 같은 경우, List 안에 ListItem 그 안에 ListItemText, ListItemIcon 컴포넌트를 배치하여 리스트 하나에 보여주고 싶은 내용들로 구성할 수 있습니다.<br/>
 그리고 List 안에 post배열은 ListItemText 등의 컴포넌트에 들어갈 데이터가 담긴 배열이므로 map을 통해 모든 리스트의 값을 가져올 수 있습니다.
+좋아요, 댓글 등과 같은 아이콘이 필요한 부분은 <a href="https://mui.com/material-ui/material-icons/#main-content">이곳</a> MUI가 제공하는 것을 사용하였습니다.
 
+# 리팩토링이 필요한 부분
+아무래도 편리한 style작성을 위해 makeStyles()과 필요한 코드 줄에 style을 적용하니 코드가 길어지고 가독성이 떨어지는 것을 느꼈습니다. 별도의 파일로 작성하여 코드를 정리하는 보완이 필요할 것 같습니다.
 
 # BoardDetail.jsx
 **ModalContainer.jsx**
@@ -227,7 +229,11 @@ List 관련 컴포넌트 같은 경우, List 안에 ListItem 그 안에 ListItem
 ```
 
 ```
-<br/>
+
+
+# 어려웠던 점
+디자인적인 부분을 생각하며 그것을 코드로 옮기고 그대로 생각하는 것처럼 화면에 반영되지 않는 것이 어려웠습니다. 또한 화면 해상도을 고려하여 반응형으로 CSS를 작성하는 것이 쉽지 않았던 것 같습니다.
+<br/><br/>
 # 마무리
 MUI 컴포넌트를 사용하면서 수고와 시간비용을 절약할 수 있어, 유용하게 사용하였습니다. 
 <br/>하지만 그저 MUI의 오픈 소스 코드를 재사용하는 것이 아닌, 어떻게 내 프로젝트에 맞게 커스텀하고 응용하며 어떻게 내 코드에 녹일 것인지가 중요하다고 생각했기 때문에 그 부분을 고민하며 개발을 진행했던 것 같습니다.

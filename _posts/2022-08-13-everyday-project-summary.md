@@ -47,10 +47,11 @@ API 개발
 <br/>
 # BoardList.jsx
 **게시글 목록**
-<br/>
+<br/><br/>
 ![image](https://user-images.githubusercontent.com/84834172/184496349-554a15ab-ac9f-4762-a58b-6eb4e35d0bca.png)
 
-```
+<pre>
+<code>
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
@@ -205,7 +206,8 @@ function BoardList(props) {
     )
 }
 export default BoardList;
-```
+</code>
+</pre>
 <br/>
 # 코드
 다음 MUI 컴포넌트를 사용하였습니다. -> <Box/> <List/> <ListItem/> <ListItemText/> <ListItemIcon/> <Stack/> <br/>
@@ -215,13 +217,142 @@ List 관련 컴포넌트 같은 경우, List 안에 ListItem 그 안에 ListItem
 
 # 리팩토링이 필요한 부분
 아무래도 편리한 style작성을 위해 makeStyles()과 필요한 코드 줄에 style을 적용하니 코드가 길어지고 가독성이 떨어지는 것을 느꼈습니다. 별도의 파일로 작성하여 코드를 정리하는 보완이 필요할 것 같습니다.
+<br/><br/>
 
 # BoardDetail.jsx
-**ModalContainer.jsx**
-<br/>
-```
+**게시글 상세**
+![image](https://user-images.githubusercontent.com/84834172/184504435-7ae45957-0dca-459e-81e4-c3cbb63bb12c.png)
 
-```
+<pre>
+<code>
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+
+import { Box } from '@mui/material/';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';                //색채워진좋아요
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';    //좋아요
+import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined';                  //댓글
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';            //조회수
+import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';          //사진첨부
+import { makeStyles, Typography } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+    headLink: {
+        textDecoration: 'none',
+        cursor: 'pointer',
+        color: 'black',
+        "&:hover": {
+            color: '#C00000',
+        }
+    },
+    writerIcon: {
+        color: "gray",
+        [theme.breakpoints.up("sm")]: {
+        },
+    },
+    postUpdate: {
+        color: "gray",
+        fontSize: "0.8rem",
+        display: "inline",
+        cursor: "pointer",
+    },
+    postDelete: {
+        color: "gray",
+        fontSize: "0.8rem",
+        display: "inline",
+        marginLeft: "1rem",
+        cursor: "pointer",
+    },
+    replyDelete: {
+        color: "gray",
+        fontSize: "0.6rem",
+        cursor: "pointer",
+    },
+    writer: {
+        fontWeight: "bold",
+        fontSize: "0.9rem",
+    },
+    date: {
+        color: "gray",
+        fontSize: "0.7rem",
+    },
+    listBtn: {
+        width: "10%",
+        height: "2.5rem",
+        background: "#C00000",
+        color: "white",
+        border: "none",
+        cursor: "pointer",
+        boxShadow: "0.1rem 0.1rem 0.3rem 0.1rem gray",
+        borderRadius: "0.5rem",
+        marginTop: "1rem",
+        float: "right",
+    },
+}));
+
+function BoardDetail() {
+    const location = useLocation();
+    const postId = location.state.postId;
+    const headTitle = location.state.headTitle;
+    const classes = useStyles();
+    .
+    .
+    .
+    return (
+        <div>
+            <Box border="2px lightgray solid" color="black" fontWeight="bold" fontSize="1.4rem" textAlign="left" p={1.5}>
+                <Link to={'/' + boardTypeToLowerCase + 'board'} className={classes.headLink}>{headTitle}</Link>
+            </Box>
+            {!displayEditBox ?
+                <div>
+                    <Box border="2px lightgray solid" color="black" textAlign="left" marginTop="0.3rem" p={2} >
+                        <AccountCircleIcon className={classes.writerIcon} />
+                        {tokenJson.sub === writerLoginId && (
+                            <div style={{ float: "right" }}>
+                                <Typography className={classes.postUpdate} onClick={() => editPost(true)}>수정</Typography>
+                                <Typography className={classes.postDelete} onClick={deletePost}>삭제</Typography>
+                            </div>
+                        )}
+                        <Typography className={classes.writer}>{writer}</Typography>
+                        <Typography className={classes.date}>{displayDateFormat(registrationDate)}</Typography>
+                        <Typography style={{ fontSize: '1.8rem', marginTop: "1rem" }}><strong>{title}</strong></Typography>
+                        <Typography style={{ margin: "0.5rem auto auto 0.3rem" }}>
+                            {contents.split("\n").map((data) => { 
+                                return (<span>{data}<br /></span>);
+                            })}
+                        </Typography>
+
+                        <div style={{ margin: "2rem auto auto 0.3rem" }}>
+                            {
+                                (!likeState) ?
+                                    <FavoriteBorderOutlinedIcon sx={{ fontSize: '1rem', color: '#C00000', cursor: 'pointer' }} onClick={clickLike} />
+                                    :
+                                    <FavoriteOutlinedIcon sx={{ fontSize: '1rem', color: '#C00000', cursor: 'pointer' }} onClick={clickLike} />
+                            }<span style={{ marginLeft: "0.2rem", fontSize: "0.7rem", color: '#C00000', cursor: 'pointer' }} onClick={clickLike}>{likeCount}</span>
+                            <TextsmsOutlinedIcon sx={{ fontSize: '1rem', color: '#0CDAE0', marginLeft: "1rem" }} /><span style={{ marginLeft: "0.2rem", fontSize: "0.7rem", color: '#0CDAE0' }}>{commentCount}</span>
+                            <VisibilityOutlinedIcon sx={{ fontSize: '1rem', color: '#6666ff', marginLeft: "1rem" }} /><span style={{ marginLeft: "0.2rem", fontSize: "0.7rem", color: '#6666ff' }}>{views}</span>
+                            <InsertPhotoOutlinedIcon sx={{ fontSize: '1rem', color: 'gray', marginLeft: "1rem" }} /><span style={{ marginLeft: "0.2rem", fontSize: "0.7rem", color: 'gray' }}>{fileCount}</span>
+                        </div>
+                    </Box >
+
+                    {/* 댓글 */}
+                    <CommentList key={comment.commentId} comment={comment} postId={postId} handleIsInitialize={handleIsInitialize} />
+
+                    {/* 게시판따라경로분기처리 */}
+                    <Link to={'/' + boardTypeToLowerCase + 'board'}><button className={classes.listBtn}>목록</button></Link>
+                </div>
+                :
+                <EditBox boardType={boardType} postId={postId} writtenTitle={title} writtenContents={contents}
+                    editPost={editPost} handleIsInitialize={handleIsInitialize} />
+            }
+        </div>
+    )
+}
+
+export default BoardDetail
+</code>
+</pre>
 <br/>
 # ModalContainer.jsx
 **Modal**
@@ -230,7 +361,7 @@ List 관련 컴포넌트 같은 경우, List 안에 ListItem 그 안에 ListItem
 
 ```
 
-
+<br/>
 # 어려웠던 점
 디자인적인 부분을 생각하며 그것을 코드로 옮기고 그대로 생각하는 것처럼 화면에 반영되지 않는 것이 어려웠습니다. 또한 화면 해상도을 고려하여 반응형으로 CSS를 작성하는 것이 쉽지 않았던 것 같습니다.
 <br/><br/>

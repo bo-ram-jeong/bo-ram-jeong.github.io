@@ -15,6 +15,8 @@ published: true
 안녕하세요.
 <br/>앞 포스팅에서 언급한 에브리타임 카피사이트 [에브리데이] 프로젝트에서 화면 구현 시, 주로 사용했던 MUI에 대해 포스팅해보려고 합니다.
 <br/>MUI는 React UI를 만들 때 컴포넌트 형태로 사용할 수 있도록 도움을 주는 라이브러리이며, MUI를 이용하면 Material 디자인 스타일이 적용된 UI를 구현할 수 있습니다.
+<br/><br/>
+MUI 컴포넌트를 사용하면 Material Design 스타일의 형식으로 만들어지지만 저의 코드는 카피사이트였기 때문에 목적에 맞게 에브리타임 사이트를 카피하기 위해 별도의 CSS 또는  makeStyles()을 사용하여 디자인을 수정하였습니다. 그리고 기존에 API 개발까지 개발한 전체코드였기 때문에 해당 포스팅 주제와 관련없는 컴포넌트, 함수 등의 코드는 생략하였습니다.
 
 <details>
 <summary>[에브리데이] 프로젝트</summary>
@@ -43,7 +45,7 @@ API 개발
 
 
 <br/>
-# 1. BoardList.jsx
+# BoardList.jsx
 **게시글 목록**
 <br/>
 ![image](https://user-images.githubusercontent.com/84834172/184496349-554a15ab-ac9f-4762-a58b-6eb4e35d0bca.png)
@@ -205,18 +207,12 @@ function BoardList(props) {
 export default BoardList;
 ```
 <br/>
-# 1.
-1번 게시글 목록을 구현한 코드에서 아래 MUI 컴포넌트를 사용하였습니다. 
-- <Box/> 
-- <List/>
-- <ListItem/>
-- <ListItemText/>
-- <ListItemIcon/>
-- <Stack/>
-MUI 컴포넌트를 사용하게 되면 Material Design 스타일의 형식으로 만들어지지만 저는 카피사이트였기 때문에 목적에 맞게 에브리타임 사이트를 카피하기 위해 저는 makeStyles()을 이용하여 디자인을 수정하였습니다. 그리고 기존에 API 개발까지 개발한 전체코드였기 때문에 일부 MUI와 관련없는 코드는 생략하였습니다.
+# 코드 설명
+<br/>
+다음 MUI 컴포넌트를 사용하였습니다. -> <Box/> <List/> <ListItem/> <ListItemText/> <ListItemIcon/> <Stack/> <br/>
+List 관련 컴포넌트 같은 경우, List 안에 ListItem 그 안에 ListItemText, ListItemIcon 컴포넌트를 배치하여 리스트 하나에 보여주고 싶은 내용들로 구성할 수 있습니다.<br/>
+그리고 List 안에 post배열은 ListItemText 등의 컴포넌트에 들어갈 데이터가 담긴 배열이므로 map을 통해 모든 리스트의 값을 가져올 수 있습니다.
 
-**코드**
-1번 코드정리 및 코드설명
 
 # BoardDetail.jsx
 **ModalContainer.jsx**

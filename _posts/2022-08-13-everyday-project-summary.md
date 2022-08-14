@@ -14,10 +14,12 @@ published: true
 <br/>
 안녕하세요.
 <br/>앞 포스팅에서 언급한 에브리타임 카피사이트 [에브리데이] 프로젝트에서 화면 구현 시, 주로 사용했던 MUI에 대해 포스팅해보려고 합니다.
-<br/>MUI는 React UI를 만들 때 컴포넌트 형태로 사용할 수 있도록 도움을 주는 라이브러리이며, MUI를 이용하면 Material 디자인 스타일이 적용된 UI를 구현할 수 있습니다.
+<br/>MUI는 React UI를 만들 때 컴포넌트 형태로 사용할 수 있도록 도움을 주는 라이브러리이며, MUI를 이용하면 Material 디자인 스타일이 적용된 UI를 구현할 수 있습니다. 공식 홈페이지는 - <a href="https://mui.com/">이곳</a> 에서 확인할 수 있으며, 컴포넌트를 사용하기 위한 npm 설치 또한 확인할 수 있습니다.
 <br/><br/>
-MUI 컴포넌트를 사용하면 Material Design 스타일의 형식으로 만들어지지만 저의 코드는 카피사이트였기 때문에 목적에 맞게 에브리타임 사이트를 카피하기 위해 별도의 CSS 또는  makeStyles()을 사용하여 디자인을 수정하였습니다. 그리고 기존에 API 개발까지 개발한 전체코드였기 때문에 해당 포스팅 주제와 관련없는 컴포넌트, 함수 등의 코드는 생략하였습니다.
-
+MUI 컴포넌트를 사용하면 Material Design 스타일의 형식으로 만들어지지만 저는 카피사이트라는 목적에 맞게 별도의 CSS 또는 makeStyles()을 사용하여 MUI 컴포넌트를 커스텀하였습니다. (기존에 API 개발까지 개발한 전체코드였기 때문에 해당 포스팅 주제와 관련없는 컴포넌트, 함수 등의 코드는 생략하였습니다)
+<br/>
+<a href="https://github.com/ram-yeon/everyday">[에브리데이] 프로젝트 GitHub</a>
+<br/>
 <details>
 <summary>[에브리데이] 프로젝트</summary>
 <h5>기간</h5>
@@ -52,7 +54,6 @@ API 개발
 ![image](https://user-images.githubusercontent.com/84834172/184496349-554a15ab-ac9f-4762-a58b-6eb4e35d0bca.png)
 
 ```javascript
-
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
@@ -132,12 +133,14 @@ function BoardList(props) {
                         onClick={() => clickBoardList(item.id)}>
                         <div>
                             <ListItemText primary={item.postTitle}
-                                primaryTypographyProps={{
+                                primaryTypographyProps = {{
+                                
                                     color: 'black',
                                     width: "30rem",
                                     overflow: "hidden",
                                     whiteSpace: "nowrap",
                                     textOverflow: "ellipsis",
+                                    
                                 }} />
                             <ListItemText
                                 primary={item.postContent.replaceAll("\n", " ")}
@@ -207,29 +210,40 @@ function BoardList(props) {
     )
 }
 export default BoardList;
-
 ```
-
+<br/>
 # 코드
 다음 MUI 컴포넌트를 사용하였습니다. ```<Box/> <List/> <ListItem/> <ListItemText/> <ListItemIcon/> <Stack/>``` <br/>
 List 관련 컴포넌트 같은 경우, List 안에 ListItem 그 안에 ListItemText, ListItemIcon 컴포넌트를 배치하여 리스트 하나에 보여주고 싶은 내용들로 구성할 수 있습니다.<br/>
 그리고 List 안에 post배열은 ListItemText 등의 컴포넌트에 들어갈 데이터가 담긴 배열이므로 map을 통해 모든 리스트의 값을 가져올 수 있습니다.
 좋아요, 댓글 등과 같은 아이콘이 필요한 부분은 <a href="https://mui.com/material-ui/material-icons/#main-content">이곳</a> MUI가 제공하는 것을 사용하였습니다.
-
+또한 생략되었지만 primaryTypographyProps 안에 color, width 등과 같은 style을 정의할 수 있습니다.
+<br/>
+ex)
+<br/>                            
+primaryTypographyProps={{ <br/>                            
+  color: 'black', <br/>
+  width: "30rem", <br/>
+  overflow: "hidden", <br/>
+  whiteSpace: "nowrap", <br/>
+  textOverflow: "ellipsis", <br/>
+}}
+<br/>
 # 리팩토링이 필요한 부분
 아무래도 편리한 style작성을 위해 makeStyles()과 필요한 코드 줄에 style을 적용하니 코드가 길어지고 가독성이 떨어지는 것을 느꼈습니다. 별도의 파일로 작성하여 코드를 정리하는 보완이 필요할 것 같습니다.
 <br/><br/>
 
 # BoardDetail.jsx
 **게시글 상세**
-<br/>
+<br/><br/>
 ![image](https://user-images.githubusercontent.com/84834172/184504435-7ae45957-0dca-459e-81e4-c3cbb63bb12c.png)
 
-```javascript
+~~~javascript
 
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
+import { makeStyles, Typography } from "@material-ui/core";
 import { Box } from '@mui/material/';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';                //색채워진좋아요
@@ -237,7 +251,6 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined';                  //댓글
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';            //조회수
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';          //사진첨부
-import { makeStyles, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     headLink: {
@@ -353,18 +366,22 @@ function BoardDetail() {
 }
 export default BoardDetail
 
-```
-
+~~~
+<br/>
 # 코드
-추가필요
+게시글 상세페이지에서는 ```<Box/> <Typography/> ...등``` 컴포넌트를 사용하였습니다.
+<br/><Typography/>는 @material-ui/core 패키지로 부터 <Typography/> 컴포넌트를 불러와 사용할 수 있고 이를 사용함으로써 다양한 스타일의 텍스트를 연출할 수 있습니다.
+위 코드에서처럼 속성으로 style을 지정할 수도 있지만 텍스트의 크기는 다음처럼 variant prop으로 제어할 수 있고 이 때, variant="h1"을 사용하면 <h1/> 태그로 마크업이 됩니다.
+<br/> ```<Typography variant="h1">Typo</Typography>``` 
+<br/> 또한 텍스트는의 색상은 color prop으로, align은 align prop으로 다음과 같이 제어할 수 있습니다.
+<br/> ```<Typography color="textSecondary">Color</Typography> ```
+<br/> ```<<Typography align="center">Center</Typography>```
 
-# 리팩토링이 필요한 부분
-추가필요
 <br/><br/>
 
 # NavBar.jsx
 **Navbar 메뉴**
-
+<br/>
 ![image](https://user-images.githubusercontent.com/84834172/184507097-2ff34f6e-6963-40dd-8058-848288e1f45a.png)
 
 ```javascript
@@ -372,17 +389,12 @@ export default BoardDetail
 import React, { useState } from 'react'
 import ModalContainer from './ModalContainer';
 import { Link, useNavigate } from 'react-router-dom';
-import { AppBar, makeStyles, Toolbar, Typography } from "@material-ui/core";
 
+import { AppBar, makeStyles, Toolbar, Typography } from "@material-ui/core";
 import { Search } from '@mui/icons-material';
 import { InputBase } from '@mui/material';
-// import { alpha } from '@mui/lab/node_modules/@mui/system';
-import { Avatar } from 'antd';
 
-import * as UserAPI from '../api/Users';
-import * as BoardAPI from '../api/Board';
-import { Message } from '../component/Message';
-import { SESSION_TOKEN_KEY } from '../component/Axios/Axios';
+import { Avatar } from 'antd';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -524,7 +536,7 @@ function NavBar(props) {
 export default NavBar
 
 ```
-
+<br/>
 # 코드
 추가필요
 
@@ -534,7 +546,7 @@ export default NavBar
 
 # ModalContainer.jsx
 **Modal**
-
+<br/><br/>
 ![image](https://user-images.githubusercontent.com/84834172/184506873-f644c008-939e-4857-b382-3b4f6bc7c8ff.png)
 
 ```javascript
@@ -652,7 +664,7 @@ function ModalContainer(props) {
 export default ModalContainer
 
 ```
-
+<br/>
 # 코드
 추가필요
 

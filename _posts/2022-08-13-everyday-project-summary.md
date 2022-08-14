@@ -17,7 +17,7 @@ published: true
 <br/>MUI는 React UI를 만들 때 컴포넌트 형태로 사용할 수 있도록 도움을 주는 라이브러리이며, MUI를 이용하면 Material 디자인 스타일이 적용된 UI를 구현할 수 있습니다. 공식 홈페이지는 <a href="https://mui.com/">이곳</a> 에서 확인할 수 있으며, 컴포넌트를 사용하기 위한 npm 설치 또한 확인할 수 있습니다.
 <br/><br/>
 MUI 컴포넌트를 사용하면 Material Design 스타일의 형식으로 만들어지지만 저는 카피사이트라는 목적에 맞게 별도의 CSS 또는 makeStyles()을 사용하여 MUI 컴포넌트를 커스텀하였습니다.(기존에 API 개발까지 개발한 전체코드였기 때문에 해당 포스팅 주제와 관련없는 컴포넌트, 함수 등의 코드는 생략하였습니다)
-<br/><br/>
+<br/>
 <details>
 <summary>[에브리데이] 프로젝트</summary>
 <h5>기간</h5>
@@ -659,7 +659,7 @@ export default ModalContainer
 MUI 컴포넌트를 사용하면서 수고와 시간비용을 절약할 수 있어, 유용하게 사용하였습니다. 
 <br/>하지만 그저 MUI의 오픈 소스 코드를 재사용하는 것이 아닌, 어떻게 내 프로젝트에 맞게 커스텀하고 응용하며 어떻게 내 코드에 녹일 것인지가 중요하다고 생각했기 때문에 그 부분을 고민하며 개발을 진행했던 것 같습니다.
 <br/>다음에 다시 UI 라이브러리를 사용하게 된다면, MUI에 대해 더욱 깊이 이해하여 사용하고 싶고 Bootstrap, Ant Design, semantic UI 과 같은 더 다양한 라이브러리를 가지고 커스텀할 수 있는 기회가 있으면 좋겠습니다.
-<br/> <a href="https://github.com/ram-yeon/everyday">→ [에브리데이] 프로젝트 GitHub 보러가기</a>
+<br/><br/> <a href="https://github.com/ram-yeon/everyday">→ [에브리데이] 프로젝트 GitHub 보러가기</a>
 <h5>:page_with_curl: Acknowledgments</h5>
 - <a href="https://mui.com/">MUI</a>
 

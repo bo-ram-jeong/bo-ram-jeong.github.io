@@ -291,14 +291,16 @@ const handleListItemClick = (event, idx) => {
 먼저 로그인 정보인 토큰 값, JWT를 저장하기에 CSRF 공격에는 안전합니다. 
 <br/>**CSRF(Cross Site Request Forgery)**
 <br/>: 정상적인 request를 가로채 백엔드 서버에 변조된 request를 보내 악의적인 동작을 수행하는 공격을 의미(피해자 정보 수정, 정보 열람) 
-<a href="https://www.imperva.com/learn/application-security/csrf-cross-site-request-forgery/">→ CSRF 자세히 보고싶다면?</a>
+<br/><a href="https://www.imperva.com/learn/application-security/csrf-cross-site-request-forgery/">→ CSRF 자세히 보고싶다면?</a>
 <br/><br/>
 그 이유는 자동으로 request에 담기는 쿠키와는 다르게 js 코드에 의해 헤더에 담기므로 XSS를 뚫지 않는 이상, 공격자가 정상적인 사용자인 척 request를 보내기가 어렵습니다.
 
 <br/>
 # localStoarage 이용한 로그인 단점 :disappointed:
 하지만, XSS에 취약하여 공격자가 localStorage에 접근하는 Js 코드 한 줄만 주입하면 localStorage를 공격자가 맘대로 드나들 수 있습니다.
-<a href="https://nordvpn.com/ko/blog/xss-attack/">→ XSS 자세히 보고싶다면?</a>
+<br/>**XSS(Cross Site Scripting)**
+<br/>: 공격자가 상대방의 브라우저에 스크립트가 실행되도록 하여, 사용자의 세션을 가로채거나 웹사이트를 변조하거나 악의적 콘텐츠를 삽입하거나 피싱 공격을 진행하는 것을 말함
+<br/><a href="https://nordvpn.com/ko/blog/xss-attack/">→ XSS 자세히 보고싶다면?</a>
 <br/><br/>따라서, 보안을 강화하기 위한 좋은 방법으로는 refresh token을 사용하는 방법도 있고 <a href="https://velog.io/@yaytomato/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%90%EC%84%9C-%EC%95%88%EC%A0%84%ED%95%98%EA%B2%8C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B2%98%EB%A6%AC%ED%95%98%EA%B8%B0">이곳1,</a> 
 <a href="https://dev.to/cotter/localstorage-vs-cookies-all-you-need-to-know-about-storing-jwt-tokens-securely-in-the-front-end-15id">이곳2</a> 를 참조할 수 있습니다.
 <br/><br/>

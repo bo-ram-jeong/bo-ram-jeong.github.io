@@ -313,7 +313,7 @@ BeforeLoginContainr과 BeforeLoginRouter 컴포넌트도 AfterLoginContainr, Aft
 <br/><br/>
 예를 들어 저의 코드 경우에는,
 NavBar와 LeftBar는 고정시키고 컨텐츠 영역만 라우팅을 설정하여 해당 영역만 컨텐츠가 바뀔 수 있도록 하는 부분이었는데, 라우팅을 통해 원하는 영역만 원하는 페이지 이동을 할 수 있었습니다.
-<br/><br/>
+<br/><br/><br/>
 # 마무리
 **라우팅의 구현에 있어 가장 중요한 핵심 세 가지**
 <br/>
@@ -325,9 +325,9 @@ NavBar와 LeftBar는 고정시키고 컨텐츠 영역만 라우팅을 설정하�
 <br/><br/>
 다음 프로젝트에서는 많이 사용하는 URL 파라미터(ex. '/example/:name' 같은 형식)와 쿼리스트링(ex. '/example?page=1&keyword=ex' 같은 형식)에 대해서도 공부해서 적용해볼 것이고 아직 더 알아야할 게 많은 라우팅에 대해서도 계속해서 더 효율적인 코드를 만들 수 있도록 공부해볼 것입니다.
 
-<br/><br/> <a href="https://github.com/ram-yeon/everyday">→ [에브리데이] 프로젝트 GitHub 보러가기</a>
+<br/> <a href="https://github.com/ram-yeon/everyday">→ [에브리데이] 프로젝트 GitHub 보러가기</a>
 <h5>:page_with_curl: Acknowledgments</h5>
-- <a href="https://reactrouter.com/docs/en/v6/getting-started/overview">Quick Start Overview - React Router</a>
+- <a href="https://reactrouter.com/docs/en/v6/getting-started/overview">React Router - Quick Start Overview </a>
 
 
 

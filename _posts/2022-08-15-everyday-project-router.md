@@ -201,13 +201,14 @@ export default AfterLoginRouter
 <br/><br/>만약 위의 해당하지 않는 url path가 입력될 경우, 페이지가 없다는 에러페이지를 보여줄 수 있도록 마지막에 path로 &#42; 별모양 특수문자를 넣어주었습니다.
 <br/><br/>
 ![image](https://user-images.githubusercontent.com/84834172/184621582-cb3842d9-9c47-45c4-8850-e3f64bfadf08.png)
-<br/>
+<br/><br/>
 또한 중간에 ```<Route path="/hotboard/detail/*" element={<BoardDetail />} />``` 를 보면 path 맨 마지막에도 &#42; 별모양 특수문자를 넣어주었습니다. 이 이유는 게시글 목록 중 상세를 보기 위해 리스트 하나를 클릭 했을 때, url path에 맨 마지막에는 게시글의 고유 id값을 넣어주기 위함입니다. 
 
-<br/><br/><br/>예를 들어 다른 페이지로 이동할 때는 Link 컴포넌트를 사용하거나 navigate()를 이용하여 다른 페이지로 이동할 수 있는데요. 저는 아래의 코드에서처럼 navigate()를 이용하였습니다. 만약 Link 컴포넌트를 사용 시에는 ```<Link to="/example">링크 이름</Link>``` 과 같이 작성하면 됩니다.
+<br/><br/>예를 들어 다른 페이지로 이동할 때는 Link 컴포넌트를 사용하거나 navigate()를 이용하여 다른 페이지로 이동할 수 있는데요. 저는 아래의 코드에서처럼 navigate()를 이용하였습니다. 만약 Link 컴포넌트를 사용 시에는 ```<Link to="/example">링크 이름</Link>``` 과 같이 작성하면 됩니다.
 <br/>
 # Link 컴포넌트 사용하여 다른 페이지로 이동
-**1) 게시글 클릭 시, clickBoardList() 호출 **
+
+**1) 게시글 클릭 시, clickBoardList() 호출**
 
 ```javascript
 <List sx={{ marginTop: "-0.4rem" }}>
@@ -221,7 +222,7 @@ export default AfterLoginRouter
 ```
 <br/> 
 이 때, item.id에는 서버로부터 게시글 목록을 불러오는 요청 api 통신 성공 후, 받은 게시글 고유 id값이 들어있으며 이 값은 clickBoardList() 호출 시 파라미터로 전달합니다.
-<br/>
+<br/><br/>
 **2) navigate()를 이용하여 다른 페이지로 이동**
 ```javascript
 const clickBoardList = (itemId) => {
@@ -231,9 +232,9 @@ const clickBoardList = (itemId) => {
 }
 ```
 <br/> 
-navigate는 다음과 같이 작성하면 되는데, ```navigate('url') or navigate('url', 다음페이지로 전달할 데이터(이 데이터를 받을 페이지에서는 useLocation으로 받음))```
-<br/>실제 url에는 '/freeboard/detail/27' 과 같이 나타나게 됩니다.
-<br/>추가로 useLocation으로 데이터를 받을 때는 아래와 같이 받아서 필요한 곳에 해당 변수를 사용하면 됩니다.
+navigate는 다음과 같이 작성하면 되는데, ```navigate('url') or navigate('url', 다음페이지로 전달할 데이터(이 데이터는 받을 페이지에서 useLocation으로 받음))```
+<br/>실제 url에는 예를 들어 '/freeboard/detail/27' 과 같이 나타나게 됩니다.
+<br/>**+ 추가로** 위에 언급한 useLocation을 설명드리자면 데이터를 받을 때는 아래와 같이 받아서 필요한 곳에 해당 변수를 사용하면 됩니다.
 ```javascript
 const location = useLocation();
 const postId = location.state.postId;
@@ -295,7 +296,6 @@ function BeforeLoginRouter(props) {
 
 export default BeforeLoginRouter
 ```
-<br/>
 # 코드
 BeforeLoginContainr과 BeforeLoginRouter 컴포넌트도 AfterLoginContainr, AfterLoginRouter 컴포넌트와 마찬가지로 라우트 작성 규칙에 따라 작성하였습니다.
 
@@ -304,7 +304,7 @@ BeforeLoginContainr과 BeforeLoginRouter 컴포넌트도 AfterLoginContainr, Aft
 처음에 라우팅에 대한 기본적인 개념은 이해되지만 막상 바로 코드에 적용하고 사용하는 것이 어려웠던 것 같습니다.
 <br/>그리고 지난 21년 11월, 리액트 라우터가 v5 → v6 로 업데이트 된지 모르고 실수로 v5를 사용하는 블로그를 보고 익히다가 초반엔 더 혼란을 겪었던 것 같습니다.
 하지만 바로 v6 튜토리얼들을 찾아보았고 다행히 새로 접하는 입문자들을 위해 설명이 된 가이드들 덕분에 한걸음 진행할 수 있었습니다.
-<br/><br/><a href="https://github.com/ram-yeon/everyday"> → 도움 된 가이드 보러가기</a>
+<br/><br/><a href="https://reactrouter.com/docs/en/v6/getting-started/overview"> → 도움 된 가이드 보러가기</a>
 
 <br/>
 # Router를 쓰면서 느꼈던 장점
@@ -313,17 +313,17 @@ BeforeLoginContainr과 BeforeLoginRouter 컴포넌트도 AfterLoginContainr, Aft
 <br/><br/>
 예를 들어 저의 코드 경우에는,
 NavBar와 LeftBar는 고정시키고 컨텐츠 영역만 라우팅을 설정하여 해당 영역만 컨텐츠가 바뀔 수 있도록 하는 부분이었는데, 라우팅을 통해 원하는 영역만 원하는 페이지 이동을 할 수 있었습니다.
-
+<br/><br/>
 # 마무리
 **라우팅의 구현에 있어 가장 중요한 핵심 세 가지**
 <br/>
 - 현재 URL에 맞는 UI(즉, 컴포넌트)를 렌더링 할 수 있어야 한다.
 - 페이지의 리로드 없이 다른 페이지를 방문할 수 있는 내비게이션 기능이 있어야 한다.
 - 사용자의 액션(앞으로 가기, 뒤로 가기 등)에 의해 URL이 변경될 때 이를 감지하고 처리할 수 있어야 한다.
-위의 내용에 맞게, 라우팅을 용도에 맞게 잘 사용하기 위해 노력했던 것 같습니다. 
+<br/><br/>위의 내용에 맞게, 라우팅을 용도에 맞게 잘 사용하기 위해 노력했던 것 같습니다. 
 제가 라우터를 사용하기 위해 헤맸던 시간만큼 결과적으로 결국 제가 라우팅의 개념에 대해서 한발 더 가까워질 수 있었던 시간이었고 이 포스팅을 통해 리액트 라우터에 대해 처음 접하는 분들께 라우터를 사용하는 방법에 대해 조금이나마 보탬이 되었으면 좋겠습니다.
 <br/><br/>
-다음 프로젝트에서는 많이 사용하는 URL 파라미터(ex. '/example/:name')와 쿼리스트링(ex. '/example?page=1&keyword=ex')에 대해서도 공부해 볼 기회가 있었으면 좋겠고 아직 더 알아야할 게 많은 라우팅에 대해서도 계속해서 더 효율적인 코드를 만들 수 있도록 공부해볼 것입니다.
+다음 프로젝트에서는 많이 사용하는 URL 파라미터(ex. '/example/:name' 같은 형식)와 쿼리스트링(ex. '/example?page=1&keyword=ex' 같은 형식)에 대해서도 공부해서 적용해볼 것이고 아직 더 알아야할 게 많은 라우팅에 대해서도 계속해서 더 효율적인 코드를 만들 수 있도록 공부해볼 것입니다.
 
 <br/><br/> <a href="https://github.com/ram-yeon/everyday">→ [에브리데이] 프로젝트 GitHub 보러가기</a>
 <h5>:page_with_curl: Acknowledgments</h5>

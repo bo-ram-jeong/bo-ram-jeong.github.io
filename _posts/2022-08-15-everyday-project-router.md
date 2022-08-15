@@ -15,12 +15,13 @@ published: true
 <br/>
 안녕하세요.
 <br/>오늘은 [에브리데이] 프로젝트 관련하여 라우터를 어떻게 사용하였는지 포스팅해보려고 합니다.
-<br/>URL에 따라서 그에 상응하는 화면을 전송해주는 것을 Routing이라 합니다. 쉽게 말해 사용자가 요청한 URL에 따라 해당 URL에 맞는 페이지를 보여주는 것입니다. 라우팅 라이브러리 중
+<br/>URL에 따라서 그에 상응하는 화면을 전송해주는 것을 Routing이라 합니다. 쉽게 말해 사용자가 요청한 URL에 따라 해당 URL에 맞는 페이지를 보여주는 것입니다. 
+<br/><br/>라우팅 라이브러리 중
 가장 많이 사용하는 것이 리액트 라우터(React Router)이고 라우터는 리액트에서 비교적 쉽게 라우팅이 가능하도록 도와줍니다.
 이 라우터를 저는 프로젝트에서 어떻게 사용하였는지 보여드리겠습니다.
-<br/>
+<br/><br/><br/>
 # index.js
-<br/><br/>
+<br/>
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -41,10 +42,12 @@ reportWebVitals();
 ```
 <br/>
 # 코드
+먼저 프로젝트에 리액트 라우터를 적용하기 위해 src/index.js 파일에 react-router-dom에 내장되어 있는 BrowserRouter라는 컴포넌트를 사용하여 감싸줍니다.
+<br/>이 컴포넌트는 웹 애플리케이션에 HTML5의 History API를 사용하여 페이지를 새로 불러오지 않고도 주소를 변경하고 현재 주소의 경로에 관련된 정보를 리액트 컴포넌트에서 사용할 수 있도록 하는 정말 유용한 컴포넌트입니다.
 
 <br/><br/>
 # App.jsx
-<br/><br/>
+<br/>
 ```javascript
 import React, { useState } from 'react';
 import './App.css';
@@ -88,7 +91,14 @@ export default App;
 ```
 <br/>
 # 코드
-내용
+바로 App.js에 다음과 같이 Route 설정을 하면 되지만, 저는 점점 프로젝트가 진행되면서 코드 리팩토링을 하였기 때문에 로그인 전/후에 따른 AfterLoginContainer 컴포넌트를 먼저 만들었고 그 안엔 다시 AfterLoginRouter 컴포넌트를 만들어 넣어주었습니다. 그 뒤의 내용은 아래에서 적었습니다.
+<br/>
+```
+<Routes>
+  <Route path="url path" element={보여줄 컴포넌트명} />
+  <Route path="/example" element={<Example />} />
+</Routes>
+```
 <br/><br/>
 
 # AfterLoginContainer.jsx
@@ -122,10 +132,15 @@ export default AfterLoginContainer
 ```
 <br/>
 # 코드
-내용
+AfterLoginContainer.jsx 에서 AterLoginRouter 컴포넌트를 넣어주었는데요. 이 때, Grid 컴포넌트를 사용하여 NavBar / LeftBar / AfterLoginRouter 의 배치를 나누었습니다. 
+<br/>그 이유는 아래의 이미지에서처럼 2번 안의 메뉴를 누를때마다 3번의 영역만 라우트영역으로 정하여 해당 영역만 contents가 바뀔 수 있게 하기 위해서입니다.
+
+# 라우트가 적용된 모습
+<img src="https://user-images.githubusercontent.com/84834172/184620061-773792b3-d330-47ff-8e62-2cc485890406.png" width=""300px/> <img src="https://user-images.githubusercontent.com/84834172/184621817-02a6d2d4-48cf-4ce6-ad21-cd84018f7a74.png" width=""300px/>
+
 
 # AfterLoginRouter.jsx
-<br/><br/>
+<br/>
 ```javascript
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
@@ -177,7 +192,6 @@ function AfterLoginRouter() {
 
                 <Route path="*" element={<Error />} />
             </Routes>
-
         </div>
     )
 }
@@ -186,12 +200,14 @@ export default AfterLoginRouter
 ```
 <br/>
 # 코드
-내용
-# 보완이 필요한 부분
-내용
+그리고 드디어 AfterLoginRouter.jsx 에는 Routes 컴포넌트 안에 Route 컴포넌트를 배치함으로써 라우트 설정을 완성할 수 있습니다.
+이때 Route 컴포넌트 속성으로는 path와 element를 넣어 각각 url path와 보여주고 싶은 컴포넌트명을 넣을 수 있습니다.
+그리고 만약 위으 해당하지 않는 url path가 입력될 경우, 페이지가 없다는 에러페이지를 보여줄 수 있도록 마지막에 path로 &#42; 별모양 특수문자를 넣어주었습니다.
+![image](https://user-images.githubusercontent.com/84834172/184621582-cb3842d9-9c47-45c4-8850-e3f64bfadf08.png)
+
 
 # BeforeLoginContainer.jsx
-<br/><br/>
+<br/>
 ```javascript
 import React from 'react';
 import BeforeLoginRouter from './BeforeLoginRouter';
@@ -207,13 +223,8 @@ function BeforeLoginContainer(props) {
 export default BeforeLoginContainer
 
 ```
-<br/>
-# 코드
-내용
-
 # BeforeLoginRouter.jsx
-<br/><br/>
-
+<br/>
 ```javascript
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
@@ -252,10 +263,13 @@ export default BeforeLoginRouter
 ```
 <br/>
 # 코드
-내용
+BeforeContain마찬가지로
 
 <br/><br/>
 # 어려웠던 점
+내용
+<br/><br/>
+# Router를 쓰면서 느꼈던 장점
 내용
 <br/><br/>
 # 마무리

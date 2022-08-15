@@ -22,6 +22,9 @@ MUI 컴포넌트를 사용하면 Material Design 스타일의 형식으로 만�
 <summary>[에브리데이] 프로젝트</summary>
 <h5>기간</h5>
 2022.04.01 - 2022.07.30
+<h5>Tool</h5>
+React(Front-End)<br/>
+Spring Boot(Back-End)
 <h5>월별 TASK</h5>
 <h5>4월</h5> 
 기획

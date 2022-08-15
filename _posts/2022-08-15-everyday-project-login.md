@@ -17,18 +17,18 @@ published: true
 안녕하세요.
 <br/>오늘은 [에브리데이] 프로젝트에서 localStorage를 사용해서 구현한 로그인 및 로그아웃을 포스팅해보려고 합니다.
 <br/><br/>localStorage는 간단히 말하면 로컬에 저장하는 임시저장소라고 할 수 있습니다. windows 전역 객체의 LocalStorage라는 컬렉션을 통해 저장, 조회가 이루어집니다.
-<br/>
-이 객체는 아래 method와 property를 제공합니다.
 <br/><br/>
+이 객체는 아래 method와 property를 제공합니다.
 - setItem(key, value) – 키-값 쌍을 보관
 - getItem(key) – 키에 해당하는 값을 받아옴
 - removeItem(key) – 키와 해당 값을 삭제
 - clear() – 모든 것을 삭제
 - key(index) – 인덱스(index)에 해당하는 키를 받아옴
 - length – 저장된 항목의 개수를 얻음
+
 <br/><br/>이 객체는 Map과 유사하여, setItem/getItem/removeItem을 지원합니다. 하지만 인덱스를 사용해 키에 접근할 수 있다는 점(key(index))에서 차이가 있습니다.
 
-<br/><br/><br/><br/>
+<br/><br/><br/>
 # login.js
 ```javascript
 import React, { useState } from 'react'
@@ -255,19 +255,18 @@ const handleListItemClick = (event, idx) => {
         }
 ```
 <br/>
-<br/>
 # 코드
 내용
 
-<br/><br/>
+<br/>
 # 어려웠던 점
 아무래도 로그인 정보를 어디에 담을지 어떤 라이브러리를 사용할지 정말 고민이 많았던 것 같습니다. 
 <br/>login.jsx 주석된 코드를 보시면 짐작하셨듯이 처음엔 상태 관리 라이브러리인 Redux를 이용하여 로그인을 구현하였습니다. 
-로그인 관리와 저장을 설명하는 여러 강의와 블로그를 참고하여 최종적으로 <a href="https://loy124.tistory.com/249">이곳</a> 에서 도움을 받아 코드를 작성해보았는데, 아무래도 리덕스에 대해 정확한
-이해와 개념을 가지고 작성하는 것이 아니다 보니 똑같이 작성하여도 알 수 없는 이유로 제대로 구현이 되지 않았습니다. 결과적으로 비교적 사용이 쉬운 localStorage를 사용하여 로그인을 구현하였지만,
+<br/><br/>로그인 관리와 저장을 설명하는 여러 강의와 블로그를 참고하여 최종적으로 <a href="https://loy124.tistory.com/249">이곳</a> 에서 도움을 받아 코드를 작성해보았는데, 아무래도 리덕스에 대해 정확한
+이해와 개념을 가지고 작성하는 것이 아니다 보니 똑같이 작성하여도 알 수 없는 이유로 제대로 구현이 되지 않았습니다. <br/><br/>결과적으로 비교적 사용이 쉬운 localStorage를 사용하여 로그인을 구현하였지만,
 다음 시도에서는 리덕스를 통해 다시 구현해볼 예정입니다. 완성되면 다시 포스팅해보도록 하겠습니다.
 
-<br/><br/>
+<br/>
 # localStoarage 이용한 로그인 장점 :wink:
 먼저 로그인 정보인 토큰 값, JWT를 저장하기에 CSRF 공격에는 안전합니다. 
 <br/>**CSRF(Cross Site Request Forgery)**
@@ -276,18 +275,18 @@ const handleListItemClick = (event, idx) => {
 <br/><br/>
 그 이유는 자동으로 request에 담기는 쿠키와는 다르게 js 코드에 의해 헤더에 담기므로 XSS를 뚫지 않는 이상, 공격자가 정상적인 사용자인 척 request를 보내기가 어렵습니다.
 
-<br/><br/>
+<br/>
 # localStoarage 이용한 로그인 단점 :disappointed:
 하지만, XSS에 취약하여 공격자가 localStorage에 접근하는 Js 코드 한 줄만 주입하면 localStorage를 공격자가 맘대로 드나들 수 있습니다.
 <a href="https://nordvpn.com/ko/blog/xss-attack/">→ XSS 자세히 보고싶다면?</a>
-<br/>따라서, 보안을 강화하기 위한 좋은 방법으로는 refresh token을 사용하는 방법도 있고, <a href="https://velog.io/@yaytomato/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%90%EC%84%9C-%EC%95%88%EC%A0%84%ED%95%98%EA%B2%8C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B2%98%EB%A6%AC%ED%95%98%EA%B8%B0">이곳1,</a> 
-<a href="https://dev.to/cotter/localstorage-vs-cookies-all-you-need-to-know-about-storing-jwt-tokens-securely-in-the-front-end-15id">이곳2</a> 을 참조할 수 있습니다.
+<br/><br/>따라서, 보안을 강화하기 위한 좋은 방법으로는 refresh token을 사용하는 방법도 있고 <a href="https://velog.io/@yaytomato/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%90%EC%84%9C-%EC%95%88%EC%A0%84%ED%95%98%EA%B2%8C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B2%98%EB%A6%AC%ED%95%98%EA%B8%B0">이곳1,</a> 
+<a href="https://dev.to/cotter/localstorage-vs-cookies-all-you-need-to-know-about-storing-jwt-tokens-securely-in-the-front-end-15id">이곳2</a> 를 참조할 수 있습니다.
 <br/><br/>
 # 마무리
-구현하는데 앞서 여유를 가지고 이 방법, 저 방법 모두 시도해보지 않았던 것이 아쉬움이 남는 것 같습니다. 
-<br/>이번 프로젝트에서는 access token만 사용해보았지만 다음 번엔 refresh token을 사용하여 '로그인 유지' api요청을 보낼때 시간의 유효기간이 지나더라도
+구현하는데 앞서 여유를 가지고 이 방법, 저 방법 모두 시도해보지 못했던 것이 아쉬움이 남는 것 같습니다. 
+<br/><br/>이번 프로젝트에서는 access token만 사용해보았지만 다음 번엔 refresh token을 사용하여 '로그인 유지' api요청을 보낼때 사용자의 로그인 유지 유효기간이 지나면
 refresh token을 request에 담아 새로운 access token을 발급받아 진행할 수 있도록 해보고 싶습니다.
-<br/>아쉬움이 남는 부분이었지만 결과적으로 localStorage로는 구현을 잘 마무리할 수 있었고 로그인 구현에 대한 다양한 방법에 대해서도 많이 알아볼 수 있는 시간이었어서 의미있는 시간이었던 것 같습니다.
+<br/><br/>아쉬움이 남는 부분이었지만 결과적으로 localStorage로는 구현을 잘 마무리할 수 있었고 로그인 구현에 대한 다양한 방법에 대해서도 많이 알아볼 수 있는 시간이었어서 의미있는 시간이었던 것 같습니다.
 
 <br/> <a href="https://github.com/ram-yeon/everyday">→ [에브리데이] 프로젝트 GitHub 보러가기</a>
 <h5>:page_with_curl: Acknowledgments</h5>

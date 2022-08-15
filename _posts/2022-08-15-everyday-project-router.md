@@ -15,7 +15,7 @@ published: true
 <br/>
 안녕하세요.
 <br/>오늘은 [에브리데이] 프로젝트 관련하여 라우터를 어떻게 사용하였는지 포스팅해보려고 합니다.
-<br/>URL에 따라서 그에 상응하는 화면을 전송해주는 것을 Routing이라 합니다. 쉽게 말해 사용자가 요청한 URL에 따라 해당 URL에 맞는 페이지를 보여주는 것입니다. 
+<br/><br/>URL에 따라서 그에 상응하는 화면을 전송해주는 것을 Routing이라 합니다. 쉽게 말해 사용자가 요청한 URL에 따라 해당 URL에 맞는 페이지를 보여주는 것입니다. 
 <br/><br/>라우팅 라이브러리 중
 가장 많이 사용하는 것이 리액트 라우터(React Router)이고 라우터는 리액트에서 비교적 쉽게 라우팅이 가능하도록 도와줍니다.
 이 라우터를 저는 프로젝트에서 어떻게 사용하였는지 보여드리겠습니다.
@@ -130,8 +130,8 @@ export default AfterLoginContainer
 # 코드
 AfterLoginContainer.jsx 에서 AterLoginRouter 컴포넌트를 넣어주었는데요. 이 때, Grid 컴포넌트를 사용하여 NavBar / LeftBar / AfterLoginRouter 의 배치를 나누었습니다. 
 <br/><br/>그 이유는 아래의 이미지에서처럼 1,2번 영역은 고정되고 2번 안의 메뉴를 누를때마다 3번의 영역만 라우트영역으로 정하여 해당 영역만 contents가 바뀔 수 있게 하기 위해서입니다.
-<br/>
-# 라우트가 적용된 모습
+<br/><br/>
+# 라우트가 적용된 모습(로그인 후)
 ![image](https://user-images.githubusercontent.com/84834172/184620061-773792b3-d330-47ff-8e62-2cc485890406.png)
 ![image](https://user-images.githubusercontent.com/84834172/184629005-299bb7e1-cd32-47e7-b100-97309e1b740f.png)
 

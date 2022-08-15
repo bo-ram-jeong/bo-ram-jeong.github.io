@@ -26,10 +26,11 @@ published: true
 - key(index) – 인덱스(index)에 해당하는 키를 받아옴
 - length – 저장된 항목의 개수를 얻음
 
-<br/><br/>이 객체는 Map과 유사하여, setItem/getItem/removeItem을 지원합니다. 하지만 인덱스를 사용해 키에 접근할 수 있다는 점(key(index))에서 차이가 있습니다.
+<br/>이 객체는 Map과 유사하여, setItem/getItem/removeItem을 지원합니다. 하지만 인덱스를 사용해 키에 접근할 수 있다는 점(key(index))에서 차이가 있습니다.
 
-<br/><br/><br/>
+<br/><br/>
 # login.js
+<br/>로그인 버튼을 눌렀을 시, id, pw, type(user or manager), 로그인유지 체크 여부 데이터를 담아 미리 정의해둔 UserAPI를 통해 로그인 api요청을 보냅니다.<br/>
 ```javascript
 import React, { useState } from 'react'
 import './Login.css'
@@ -126,10 +127,10 @@ export default Login
 ```
 <br/>
 # Users.jsx
+<br/>login.jsx에서 바로 Axios 요청을 보내지 않고 Users.jsx에 모두 정의해놓았습니다. 또한 NewPromise 컴포넌트로 한번더 감싸놓았는데 NewPromise의 코드는 아래에 있습니다.<br/>
 ```javascript
 import Axios from "../component/Axios/Axios";
 import { NewPromise } from "../component/Common";
-
 
 //이메일인증
 export const authenticate = (data) => NewPromise(Axios.post('/email-authenticate', data));
@@ -154,6 +155,8 @@ export const resign = () => NewPromise(Axios.delete('/users'));
 <br/>
 
 # Axios.jsx
+Axios 컴포넌트를 생성하여 axios를 사용할때마다 헤더를 매번 넣지 않기 위해, 에러가 발생했을때 공통으로 처리하기 위해 Axios 요청 관련한 설정값은 이 파일에 모두 정리해두었습니다.
+그리고 요청하기 직전에 interceptors를 사용하여 localStorage에서 SESSION_TOKEN_KEY 값을 가져와 header에 토큰을 넣어서 서버에 보낼 수 있게끔 하였습니다. 이로써 매번 헤더에 토큰을 넣어 서버에 보내는 일을 공통화하였습니다.
 ```javascript
 import CommonAxios from 'axios';
 
@@ -188,6 +191,7 @@ export default Axios;
 <br/>
 
 # Common.jsx
+이 파일에서 NewPromise를 export하였습니다. api요청이 성공했을 때, config의 url이 로그인 관련된 path이면 localStorage에 SESSION_TOKEN_KEY 키값으로 서버에서 받은 response의 headers의 토큰값을 저장하도록 하였습니다. 
 ```javascript
 import * as CommonJs from "../lib/Common";
 import {SESSION_TOKEN_KEY} from '../component/Axios/Axios';
@@ -212,8 +216,8 @@ export const NewPromise = (promise) => {
 };
 ```
 <br/>
-# NavBar.jsx
-//로그아웃이 모달창안 리스트에있음
+# ModalContainer.jsx
+로그아웃 코드입니다. 로그아웃과 탈퇴하기 모두 localStorage.removeItem()을 통해 토큰값을 지웁니다.
 ```javascript
 const handleListItemClick = (event, idx) => {
         if (Number(idx) === 0) { //내가 쓴 글
@@ -228,13 +232,13 @@ const handleListItemClick = (event, idx) => {
             navigate('/mylikearticle', {state: {headTitle:'좋아요 한 글', typeId: 3}});
             props.handleClose(false);
         }
-        else if (Number(idx) === 3) { //로그아웃
+        else if (Number(idx) === 3) { //로그아웃                                   //인자값으로 받은 idx가 3일 때, 로그아웃 로직 실행
             UserAPI.logout().then(response => {
                 console.log(JSON.stringify(response));
                 localStorage.removeItem(SESSION_TOKEN_KEY);
                 loginCallBack(false);
                 navigate("/");
-            }).catch(error => { //만료된 토큰이거나 존재하지않는 토큰이면 강제로그아웃
+            }).catch(error => { //만료된 토큰이거나 존재하지않는 토큰이면 강제로그아웃 
                 console.log(JSON.stringify(error));
                 Message.error(error.message);
                 localStorage.removeItem(SESSION_TOKEN_KEY);
@@ -242,7 +246,7 @@ const handleListItemClick = (event, idx) => {
                 navigate("/");
             });
         }
-        else if (Number(idx) === 4) { //탈퇴하기
+        else if (Number(idx) === 4) { //탈퇴하기                                    //인자값으로 받은 idx가 4일 때, 탈퇴하기 로직 실행
             UserAPI.resign().then(response => {
                 console.log(JSON.stringify(response));
                 localStorage.removeItem(SESSION_TOKEN_KEY);
@@ -253,12 +257,28 @@ const handleListItemClick = (event, idx) => {
                 Message.error(error.message);
             });
         }
+.
+.
+.
+<List>
+  {myDataList.map(item => (
+    <ListItemButton
+      key={item.text}
+      sx={{ padding: "0.5rem 0rem 0.5rem 0.5rem" }}
+      onClick={(event) => handleListItemClick(event, item.idx)}       //리스트 클릭 시 handleListItemClick 함수 호출
+    >
+      <ListItemIcon>{item.icon}</ListItemIcon>
+      <ListItemText primary={item.text} sx={{ marginLeft: "-1rem" }} />
+    </ListItemButton>
+  ))}
+</List>
+.
+.
+.
+
 ```
 <br/>
-# 코드
-내용
 
-<br/>
 # 어려웠던 점
 아무래도 로그인 정보를 어디에 담을지 어떤 라이브러리를 사용할지 정말 고민이 많았던 것 같습니다. 
 <br/>login.jsx 주석된 코드를 보시면 짐작하셨듯이 처음엔 상태 관리 라이브러리인 Redux를 이용하여 로그인을 구현하였습니다. 

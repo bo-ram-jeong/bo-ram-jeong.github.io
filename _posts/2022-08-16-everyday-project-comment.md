@@ -23,16 +23,19 @@ published: true
 필요에 따라 <a href="https://velog.io/@wkahd01/%EB%8C%80%EB%8C%93%EA%B8%80-%EA%B8%B0%EB%8A%A5-%EB%A7%8C%EB%93%A4%EA%B8%B0-React">이곳</a> 블로그에서 가져온 
 ```Markdown``` ```CommentTool``` 컴포넌트를 사용하였습니다.
 
-<br/><br/>
+<br/>
 # 구현 화면
+<br/>
+
 ![image](https://user-images.githubusercontent.com/84834172/184888340-22388711-9271-4106-a6a0-88802bde929c.png)
 ![image](https://user-images.githubusercontent.com/84834172/184888392-b5b8684a-22f4-4a0b-8abf-ad2ef9567870.png)
 ![image](https://user-images.githubusercontent.com/84834172/184889140-cc9dad56-3aa0-4b08-b128-5a9b6f552e60.png)
 ![image](https://user-images.githubusercontent.com/84834172/184889186-54e4767f-960d-4062-944d-519ad0c47244.png)
 
-<br/><br/>
+<br/>
 Comment 컴포넌트 자체에서는 댓글 안에 들어가는 작성자, 날짜, 내용 등에 대한 정보만 담게 하였고 댓글 전체가 들어가는 리스트(+댓글등록) 부분은 CommentList 컴포넌트에서 
-관리하도록 개발하였습니다. 마찬가지로 대댓글 또한 Reply 컴포넌트 자체에서는 작성 관련 정보만 담았고 ReplyList 컴포넌트에서는 대댓글 리스트 전체 부분(+대댓글등록)을 담도록 개발하였습니다.
+관리하도록 개발하였습니다. 
+<br/><br/>마찬가지로 대댓글 또한 Reply 컴포넌트 자체에서는 작성 관련 정보만 담았고 ReplyList 컴포넌트에서는 대댓글 리스트 전체 부분(+대댓글등록)을 담도록 개발하였습니다.
 <br/>
 따라서 서버에 댓글, 대댓글 등록 api 요청하는 부분은 CommentList.jsx, ReplyList.jsx 에 작성하였고, 댓글, 대댓글 삭제 api 요청은 Comment.jsx, Reply.jsx 파일에 작성하였습니다.
 <br/><br/>
@@ -43,7 +46,7 @@ Comment 컴포넌트 자체에서는 댓글 안에 들어가는 작성자, 날�
   const editorInstance = editorRef.current.getInstance();
   const getContent = editorInstance.getMarkdown();
 ```
-
+<br/><br/>
 # CommentList.js
 ```javascript
 import React, { useEffect, useState, useRef } from "react";
@@ -146,6 +149,7 @@ const CommentList = (props) => {
 
 export default CommentList;
 ```
+<br/>
 # Comment.jsx
 ```javascript
 import React, { useState } from "react";
@@ -372,7 +376,7 @@ const ReplyList = (props) => {
 
 export default ReplyList;
 ```
-
+<br/>
 # Reply.jsx
 ```javascript
 import React, { useState } from "react";
@@ -482,7 +486,7 @@ Toast-UI Editor를 사용하는 것이 어려웠습니다.
 # 마무리
 기능적인 부분이나 UI적인 부분이 다소 미흡하고 아쉬운 부분이 많아 이 부분은 리팩토링을 통해 더 보완해나갈 예정입니다. 그래도 댓글과 대댓글 부분을 구현해보면서 컴포넌트 간의 관계적인 
 부분과 구조적인 부분에 대해서 생각해볼 수 있었고 구현해봄으로써 이 부분에 대한 이해도가 높아졌던 것 같습니다.
-<br/> <a href="https://github.com/ram-yeon/everyday">→ [에브리데이] 프로젝트 GitHub 보러가기</a>
+<br/><br/> <a href="https://github.com/ram-yeon/everyday">→ [에브리데이] 프로젝트 GitHub 보러가기</a>
 <h5>:page_with_curl: Acknowledgments</h5>
 - <a href="https://velog.io/@wkahd01/%EB%8C%80%EB%8C%93%EA%B8%80-%EA%B8%B0%EB%8A%A5-%EB%A7%8C%EB%93%A4%EA%B8%B0-React">대댓글 기능 만들기</a>
 

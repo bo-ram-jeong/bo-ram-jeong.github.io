@@ -180,10 +180,9 @@ export default Comment;
 
 좋아요 기능을 구현하는 다양한 방법이 있지만,<br/>
 저는 좋아요를 클릭 시, 화면단에서 먼저 색상이 바뀌고 숫자가 바로 바뀔 수 있도록 개발하였습니다. 그 동시에 API요청 코드도 함께 작성하여 API 통신 후 DB에 반영된 값은 다시 렌더링
-했을때 볼 수 있도록 하였습니다. API를 연동하여 좋아요 기능을 구현해봄으로써 state에 대한 이해를 더 높일 수 있었고 전보다 state를 사용하는 것이 더욱 수월해짐을 느꼈던 것 같습니다.
+했을때 볼 수 있도록 하였습니다. API를 연동하여 좋아요 기능을 구현해봄으로써 state에 대한 이해를 더 높일 수 있었고 전보다 state를 사용하는 것이 더욱 수월해짐을 느꼈습니다.
 
-
-<br/><br/> <a href="https://github.com/ram-yeon/everyday">→ [에브리데이] 프로젝트 GitHub 보러가기</a>
+<br/> <a href="https://github.com/ram-yeon/everyday">→ [에브리데이] 프로젝트 GitHub 보러가기</a>
 <h5>:page_with_curl: Acknowledgments</h5>
 - <a href="https://velog.io/@estell/React-%EC%A2%8B%EC%95%84%EC%9A%94-%EB%B2%84%ED%8A%BC-%EA%B8%B0%EB%8A%A5-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0-omCilck-%EB%B2%84%ED%8A%BC-%EB%88%84%EB%A5%B4%EB%A9%B4-1-%EC%A6%9D%EA%B0%80">좋아요 버튼 기능 만들기</a>
 

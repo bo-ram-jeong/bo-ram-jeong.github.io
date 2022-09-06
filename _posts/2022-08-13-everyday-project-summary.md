@@ -12,11 +12,10 @@ published: true
 ---
 
 <br/>
-안녕하세요.
-<br/>앞 포스팅에서 언급한 에브리타임 카피사이트 [에브리데이] 프로젝트에서 화면 구현 시, 주로 사용했던 MUI에 대해 포스팅해보려고 합니다.
-<br/>MUI는 React UI를 만들 때 컴포넌트 형태로 사용할 수 있도록 도움을 주는 라이브러리이며, MUI를 이용하면 Material 디자인 스타일이 적용된 UI를 구현할 수 있습니다. 공식 홈페이지는 <a href="https://mui.com/">이곳</a> 에서 확인할 수 있으며, 컴포넌트를 사용하기 위한 npm 설치 또한 확인할 수 있습니다.
+<br/>앞 포스팅에서 언급한 에브리타임 카피사이트 [에브리데이] 프로젝트에서 화면 구현 시, 주로 사용했던 MUI에 대해 포스팅해보려고 한다!
+<br/>MUI는 React UI를 만들 때 컴포넌트 형태로 사용할 수 있도록 도움을 주는 라이브러리이며, MUI를 이용하면 Material 디자인 스타일이 적용된 UI를 구현할 수 있다. 공식 홈페이지는 <a href="https://mui.com/">이곳</a> 에서 확인할 수 있으며, 컴포넌트를 사용하기 위한 npm 설치 또한 확인할 수 있다.
 <br/><br/>
-MUI 컴포넌트를 사용하면 Material Design 스타일의 형식으로 만들어지지만 저는 카피사이트라는 목적에 맞게 별도의 CSS 또는 makeStyles()을 사용하여 MUI 컴포넌트를 커스텀하였습니다.(기존에 API 개발까지 개발한 전체코드였기 때문에 해당 포스팅 주제와 관련없는 컴포넌트, 함수 등의 코드는 생략하였습니다)
+MUI 컴포넌트를 사용하면 Material Design 스타일의 형식으로 만들어지지만 나는 카피사이트라는 목적에 맞게 별도의 CSS 또는 makeStyles()을 사용하여 MUI 컴포넌트를 커스텀하였다.(기존에 API 개발까지 개발한 전체코드였기 때문에 해당 포스팅 주제와 관련없는 컴포넌트, 함수 등의 코드는 생략)
 <br/>
 <details>
 <summary>[에브리데이] 프로젝트</summary>
@@ -212,14 +211,14 @@ export default BoardList;
 ```
 <br/>
 # 코드
-다음 MUI 컴포넌트를 사용하였습니다. ```<Box/> <List/> <ListItem/> <ListItemText/> <ListItemIcon/> <Stack/>``` <br/>
-List 관련 컴포넌트 같은 경우, List 안에 ListItem 그 안에 ListItemText, ListItemIcon 컴포넌트를 배치하여 리스트 하나에 보여주고 싶은 내용들로 구성할 수 있습니다.<br/>
-그리고 List 안에 post배열은 ListItemText 등의 컴포넌트에 들어갈 데이터가 담긴 배열이므로 map을 통해 모든 리스트의 값을 가져올 수 있습니다.
-좋아요, 댓글 등과 같은 아이콘이 필요한 부분은 <a href="https://mui.com/material-ui/material-icons/#main-content">이곳</a> MUI가 제공하는 것을 사용하였습니다.
-또한 생략되었지만 primaryTypographyProps 안에 color, width 등과 같은 style을 정의할 수 있습니다.
+다음 MUI 컴포넌트를 사용하였다. ```<Box/> <List/> <ListItem/> <ListItemText/> <ListItemIcon/> <Stack/>``` <br/>
+List 관련 컴포넌트 같은 경우, List 안에 ListItem 그 안에 ListItemText, ListItemIcon 컴포넌트를 배치하여 리스트 하나에 보여주고 싶은 내용들로 구성할 수 있다.<br/>
+그리고 List 안에 post배열은 ListItemText 등의 컴포넌트에 들어갈 데이터가 담긴 배열이므로 map을 통해 모든 리스트의 값을 가져올 수 있다.
+좋아요, 댓글 등과 같은 아이콘이 필요한 부분은 <a href="https://mui.com/material-ui/material-icons/#main-content">이곳</a> MUI가 제공하는 것을 사용하였다.
+또한 생략되었지만 primaryTypographyProps 안에 color, width 등과 같은 style을 정의할 수 있다.
 <br/>
 # 보완이 필요한 부분
-아무래도 편리한 style작성을 위해 makeStyles()과 필요한 코드 줄에 style을 적용하니 코드가 길어지고 가독성이 떨어지는 것을 느꼈습니다. 별도의 파일로 작성하여 코드를 정리하는 보완이 필요할 것 같습니다.
+아무래도 편리한 style작성을 위해 makeStyles()과 필요한 코드 줄에 style을 적용하니 코드가 길어지고 가독성이 떨어지는 것을 느꼈고 별도의 파일로 작성하여 코드를 정리하는 보완이 필요할 것 같다고 느꼈다.
 <br/><br/>
 
 # BoardDetail.jsx
@@ -358,10 +357,10 @@ export default BoardDetail
 ~~~
 <br/>
 # 코드
-게시글 상세페이지에서는 ```<Box/> <Typography/> ..``` 컴포넌트를 사용하였습니다.
-<br/><Typography/>는 @material-ui/core 패키지로 부터 <Typography/> 컴포넌트를 불러와 사용할 수 있고 이를 사용함으로써 다양한 스타일의 텍스트를 연출할 수 있습니다.
-위 코드에서처럼 속성으로 style을 지정할 수도 있지만 텍스트의 크기는 다음처럼 variant prop으로 제어할 수 있고 이 때, variant="h1"을 사용하면 <h1/> 태그로 마크업이 됩니다. ```<Typography variant="h1">Typo</Typography>``` 
-<br/> 또한 텍스트는의 색상은 color prop으로, align은 align prop으로 다음과 같이 제어할 수 있습니다. ```<Typography color="textSecondary">Color</Typography> ``` ```<Typography align="center">Center</Typography>```
+게시글 상세페이지에서는 ```<Box/> <Typography/> ..``` 컴포넌트를 사용하였다.
+<br/><Typography/>는 @material-ui/core 패키지로 부터 <Typography/> 컴포넌트를 불러와 사용할 수 있고 이를 사용함으로써 다양한 스타일의 텍스트를 연출할 수 있다.
+위 코드에서처럼 속성으로 style을 지정할 수도 있지만 텍스트의 크기는 다음처럼 variant prop으로 제어할 수 있고 이 때, variant="h1"을 사용하면 <h1/> 태그로 마크업이 된다. ```<Typography variant="h1">Typo</Typography>``` 
+<br/> 또한 텍스트는의 색상은 color prop으로, align은 align prop으로 다음과 같이 제어할 수 있다. ```<Typography color="textSecondary">Color</Typography> ``` ```<Typography align="center">Center</Typography>```
 
 <br/><br/>
 
@@ -521,11 +520,11 @@ export default NavBar
 ```
 <br/>
 # 코드
-```<AppBar/> <Toolbar/>```를 이용하여 navbar를 만들었으며 ```<InputBase/>```를 사용하여 검색박스를 만들었습니다. 또한 사람형태의 이미지가 있는 아이콘을 누르면 아래 Modal의 이미지처럼 모달창이 뜨면서 다른메뉴들을 볼 수 있도록 먼저 ```<ModalContainer/>```라는 별도의 컴포넌트 파일을 만들었고 모달창에 뜨는 메뉴와 정보들은 ModalContainer.jsx안에 작성하였습니다. 모달창에 뜨는 아이디와 같은 필요한 정보들은 NavBar.jsx에서 props로 전달하였고 모달창이 open, close 될 수 있도록 해당 속성도 props로 전달해주었습니다.
-중간에 Ant Design에서 제공하는 ```<Avatar/>``` 컴포넌트를 사용하여 이미지를 추가하였는데 이 부분은 MUI의 ```<Avatar/>``` 컴포넌트를 사용하여도 무방합니다.
+```<AppBar/> <Toolbar/>```를 이용하여 navbar를 만들었으며 ```<InputBase/>```를 사용하여 검색박스를 만들었다. 또한 사람형태의 이미지가 있는 아이콘을 누르면 아래 Modal의 이미지처럼 모달창이 뜨면서 다른메뉴들을 볼 수 있도록 먼저 ```<ModalContainer/>```라는 별도의 컴포넌트 파일을 만들었고 모달창에 뜨는 메뉴와 정보들은 ModalContainer.jsx안에 작성하였다. 모달창에 뜨는 아이디와 같은 필요한 정보들은 NavBar.jsx에서 props로 전달하였고 모달창이 open, close 될 수 있도록 해당 속성도 props로 전달해주었다.
+중간에 Ant Design에서 제공하는 ```<Avatar/>``` 컴포넌트를 사용하여 이미지를 추가하였는데 이 부분은 MUI의 ```<Avatar/>``` 컴포넌트를 사용하여도 무방하다.
 
 # 보완이 필요한 부분
-검색박스에 경우 MUI에 제공하는 검색 컴포넌트를 사용하지 않고 돋보기 아이콘 + InputBase컴포넌트를 조합하였더니 다소 디자인적으로 아쉬웠던 것 같습니다. 이 부분은 MUI에서 제공하는 <a href="https://mui.com/material-ui/react-app-bar/">이곳</a> 에서 가이드를 따르는 것도 좋은 방법이 될 것 같습니다.
+검색박스에 경우 MUI에 제공하는 검색 컴포넌트를 사용하지 않고 돋보기 아이콘 + InputBase컴포넌트를 조합하였더니 다소 디자인적으로 아쉬웠던 것 같다. 이 부분은 MUI에서 제공하는 <a href="https://mui.com/material-ui/react-app-bar/">이곳</a> 에서 가이드를 따르는 것도 좋은 방법이 될 것 같다.
 <br/><br/>
 
 # ModalContainer.jsx
@@ -650,18 +649,18 @@ export default ModalContainer
 ```
 <br/>
 # 코드
-앞서 NavBar.jsx에서 props 속성으로 보내주었던 변수들은 각각 open, handleClose, loginCallBack, id, name, nickname 변수로 다시 받아 사용하였고, 위의 게시글 목록 부분에서 사용한 ```<List/>``` 컴포넌트를 Modal에서도 사용하였습니다. 그리고 myDataList 배열에는 필요한 text, icon, idx 정보를 넣었고 해당 배열을 map으로 돌면서 모달창에 리스트로 뿌려줄 수 있도록 하였습니다. 
+앞서 NavBar.jsx에서 props 속성으로 보내주었던 변수들은 각각 open, handleClose, loginCallBack, id, name, nickname 변수로 다시 받아 사용하였고, 위의 게시글 목록 부분에서 사용한 ```<List/>``` 컴포넌트를 Modal에서도 사용하였다. 그리고 myDataList 배열에는 필요한 text, icon, idx 정보를 넣었고 해당 배열을 map으로 돌면서 모달창에 리스트로 뿌려줄 수 있도록 하였다. 
 
 # 보완이 필요한 부분
-해당 모달창이 open될 경우, 뒷 배경이 어둡게 되는데 이것을 없애는 방법을 찾아보았지만 찾지 못하였습니다. 용도에 따라 모달을 잘 이용하지 못한 것 같아 아쉬웠던 것 같습니다. 다시 구현하게 된다면 다이얼로그나 다른 컴포넌트를 찾아 보완이 필요할 것 같습니다.
+해당 모달창이 open될 경우, 뒷 배경이 어둡게 되는데 이것을 없애는 방법을 찾아보았지만 찾지 못하였다.. 용도에 따라 모달을 잘 이용하지 못한 것 같아서 다시 구현하게 된다면 다이얼로그나 다른 컴포넌트를 찾아 보완해보고 싶다.
 <br/><br/>
 # 어려웠던 점
-디자인적인 부분을 생각하며 그것을 코드로 옮기고 그대로 생각하는 것처럼 화면에 반영되지 않는 것이 어려웠습니다. 또한 화면 해상도을 고려하여 반응형으로 CSS를 작성하는 것이 쉽지 않았던 것 같습니다.
+디자인적인 부분을 생각하며 그것을 코드로 옮기고 그대로 생각하는 것처럼 화면에 반영되지 않는 것이 어려웠다. 또한 화면 해상도을 고려하여 반응형으로 CSS를 작성하는 것이 쉽지 않았던 것 같다.
 <br/><br/>
 # 마무리
-MUI 컴포넌트를 사용하면서 수고와 시간비용을 절약할 수 있어, 유용하게 사용하였습니다. 
-<br/>하지만 그저 MUI의 오픈 소스 코드를 재사용하는 것이 아닌, 어떻게 내 프로젝트에 맞게 커스텀하고 응용하며 어떻게 내 코드에 녹일 것인지가 중요하다고 생각했기 때문에 그 부분을 고민하며 개발을 진행했던 것 같습니다.
-<br/>다음에 다시 UI 라이브러리를 사용하게 된다면, MUI에 대해 더욱 깊이 이해하여 사용하고 싶고 Bootstrap, Ant Design, semantic UI 과 같은 더 다양한 라이브러리를 가지고 커스텀할 수 있는 기회가 있으면 좋겠습니다.
+MUI 컴포넌트를 사용하면서 수고와 시간비용을 절약할 수 있어서 정말 유용하게 사용하였던 것 같다. 
+<br/>하지만 그저 MUI의 오픈 소스 코드를 재사용하는 것이 아닌, 어떻게 내 프로젝트에 맞게 커스텀하고 응용하며 어떻게 내 코드에 녹일 것인지가 중요하다고 생각했기 때문에 그 부분을 고민하며 개발을 진행했던 것 같다.
+<br/>다음에 다시 UI 라이브러리를 사용하게 된다면, MUI에 대해 더욱 깊이 이해하여 사용하고 싶고 Bootstrap, Ant Design, semantic UI 과 같은 더 다양한 라이브러리를 가지고 커스텀해보고 싶다.
 <br/><br/> <a href="https://github.com/ram-yeon/everyday">→ [에브리데이] 프로젝트 GitHub 보러가기</a>
 <h5>:page_with_curl: Acknowledgments</h5>
 - <a href="https://mui.com/">MUI</a>

@@ -12,9 +12,8 @@ published: true
 ---
 
 <br/>
-안녕하세요.
-<br/>오늘은 [에브리데이] 프로젝트에서 구현했던 좋아요 기능을 포스팅해보려고 합니다.
-<br/><br/>저는 게시글과 댓글 그리고 대댓글에 좋아요 아이콘을 생성하여 클릭 시, 좋아요를 할 수 있도록 기능을 구현하였고, 서버에게도 해당 데이터를 전달할 수 있도록 API를 연동하였습니다.
+<br/>[에브리데이] 프로젝트에서 구현했던 좋아요 기능을 포스팅해보려고 한다!
+<br/><br/>나는 게시글과 댓글 그리고 대댓글에 좋아요 아이콘을 생성하여 클릭 시, 좋아요를 할 수 있도록 기능을 구현하였고, 서버에게도 해당 데이터를 전달할 수 있도록 API를 연동하였다.
 <br/><br/>
 **개발 환경**
 <br/>
@@ -33,18 +32,18 @@ Spring Boot
 
 <br/>
 
-아래의 코드는 댓글의 좋아요 기능을 구현한 것입니다.
+아래의 코드는 댓글의 좋아요 기능을 구현한 것이다!
 <br/><br/>isLikeComment, likeCount의 변수는 이전에 게시글 상세 조회 api에서 서버로부터 가져온 값으로, isLikeComment는 사용자가 댓글을 좋아요했는지에 대한 상태값이며(Y 또는 N)
-likeCount는 해당 댓글의 총 좋아요 개수입니다.
-<br/><br/>먼저 서버로부터 받은 isLikeComment, likeCount 변수를 아래와 같이 useState로 다시 선언하고 저장하였습니다.
+likeCount는 해당 댓글의 총 좋아요 개수이다.
+<br/><br/>먼저 서버로부터 받은 isLikeComment, likeCount 변수를 아래와 같이 useState로 다시 선언하고 저장하였다.
 ```javascript 
 const [isLikeComment, setIsLikeComment] = useState(comment.isLikeComment);  //comment.isLikeComment의 comment는 게시글 상세 조회 api에서 받은 댓글정보를 담은 배열
 const [likeCount, setLikeCount] = useState(comment.likeCount); 
 ```
 <br/>
-그리고 좋아요 아이콘을 클릭 시, isLikeComment가 N이면 likeCount가 +1하도록, isLikeComment가 Y이면 likeCount가 -1하도록 분기처리를 하였습니다. 또한 isLikeComment의 상태값
+그리고 좋아요 아이콘을 클릭 시, isLikeComment가 N이면 likeCount가 +1하도록, isLikeComment가 Y이면 likeCount가 -1하도록 분기처리를 하였고 isLikeComment의 상태값
 에 따른 api 요청코드도 작성하였습니다.
-<br/>따라서, isLikeComment의 값이 좋아요 아이콘을 누를때마다 Y→N→Y→N 으로 바뀌게 되어 좋아요했다가 좋아요를 취소하는 것을 반복하는 것도 가능해집니다.
+<br/>따라서, isLikeComment의 값이 좋아요 아이콘을 누를때마다 Y→N→Y→N 으로 바뀌게 되어 좋아요했다가 좋아요를 취소하는 것을 반복하는 것도 가능.
 <br/>
 # Comment.js
   
@@ -179,8 +178,8 @@ export default Comment;
 # 마무리
 
 좋아요 기능을 구현하는 다양한 방법이 있지만,<br/>
-저는 좋아요를 클릭 시, 화면단에서 먼저 색상이 바뀌고 숫자가 바로 바뀔 수 있도록 개발하였습니다. 그 동시에 API요청 코드도 함께 작성하여 API 통신 후 DB에 반영된 값은 다시 렌더링
-했을때 볼 수 있도록 하였습니다. API를 연동하여 좋아요 기능을 구현해봄으로써 state에 대한 이해를 더 높일 수 있었고 전보다 state를 사용하는 것이 더욱 수월해짐을 느꼈습니다.
+나는 좋아요를 클릭 시, 화면단에서 먼저 색상이 바뀌고 숫자가 바로 바뀔 수 있도록 개발하였다. 그 동시에 API요청 코드도 함께 작성하여 API 통신 후 DB에 반영된 값은 다시 렌더링
+했을때 볼 수 있도록 하였다. API를 연동하여 좋아요 기능을 구현해봄으로써 state에 대한 이해를 더 높일 수 있었고 전보다 state를 사용하는 것이 더욱 수월해진 것을 느꼈다.
 
 <br/> <a href="https://github.com/ram-yeon/everyday">→ [에브리데이] 프로젝트 GitHub 보러가기</a>
 <h5>:page_with_curl: Acknowledgments</h5>

@@ -63,7 +63,7 @@ published: true
 async / await 는 ES6에서 callback hell을 해결하기 위해 Promise가 도입된 것처럼 
 async / await도 Promise처럼 callback 을 해결할 뿐만 아니라 더 직관적이고 단순한 코드를 만들 수 있다.
 ```
-
+<br/>
 - ES9(2018.6) 
 <br/>
 1) Promise.finally <br/>
@@ -151,14 +151,13 @@ console.log(string.replaceAll("l","#")) 	//He##o
 Promise.any <br/>
 : 프로미스 중에 가장 먼저 첫 번째로 이행된(해결된) 프로미스가 생기면 단락되고 해당 객체 반환한다. Promise.any()는 약속이 이행되지 않으면 AggregateError로 거부한다.
 
-<br/>
-
 Promise.race <br/> 
 : 프로미스 중에 가장 먼저 완료된 결과값으로 이행/거부
 
 <br/>
 
-**Promise.any()는 약속이 먼저 거부되더라도 이행할 첫 번째 약속으로 해결하기 때문에, 이 부분이 첫 번째 약속으로 해결하거나 거부하는 Promise.race() 와 대조됨**
+즉, Promise 이터레이터를 인자로 받아 하나라도 성공한다면 전체를 완료한다. 만약, 모두 실패한다면 모든 실패 이유가 포함된 AggregateError가 발생한다.
+ES6에서 등장한 Promise.race() 와 유사한 듯 보이나, Promise.race() 는 Promise 이터레이터 중 하나라도 성공 혹은 실패하면 전체를 완료한다는 차이점이 있다.
 
 ## 3) WeakRefs
 WeakRef는 약한 참조(Weak References)를 의미한다. 

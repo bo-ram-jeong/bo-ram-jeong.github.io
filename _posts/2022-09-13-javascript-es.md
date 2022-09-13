@@ -37,14 +37,17 @@ published: true
 2) Object에 대한 getter / setter 지원<br/>
 3) 자바스크립트 strict 모드 지원 <br/>
 4) JSON 지원
+
 <br/><br/>
+
 # ES6(ES2015)
 2015년 6월에 나왔으며, 6판에는 클래스와 모듈 같은 복잡한 응용 프로그램을 작성하기 위한 새로운 문법이 추가되었다. 
 하지만 이러한 문법의 의미는 5판의 strict mode와 같은 방법으로 정의된다. 이 판은 "ECMAScript Harmony" 혹은 "ES6 Harmony" 등으로 불리기도 한다.
-<br/>**추가된 문법과 자세한 특징은 아래 정리하였다.
+<br/>
+**추가된 문법과 자세한 특징은 아래 정리하였다.
 
-<br/><br/>
-# ES7(ES2016) / ES8(ES2017) / ES9(ES2018) / # ES10(ES2019)
+<br/>
+# ES7(ES2016) / ES8(ES2017) / ES9(ES2018) / ES10(ES2019)
 - ES7(2016.6)
 <br/> 
 1) 제곱연산자 추가 <br/>
@@ -70,9 +73,11 @@ published: true
 4) optional catch 등.. <br/>
 
 
-<br/><br/><br/>
+<br/><br/>
 
 ---
+
+<br/>
 
 # ES6(ES2015) 특징
 <br/><br/>

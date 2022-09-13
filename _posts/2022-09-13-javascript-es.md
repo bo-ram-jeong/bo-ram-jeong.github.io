@@ -14,7 +14,7 @@ published: true
 ---
 
 <br/>
-<br/>전부터 JavaScript를 공부하면서 정리하고 싶었던 ES5와 ES6의 차이 그리고 비교적 최근에 나온 ES11, ES12 문법까지 정리해보려고 한다.
+<br/>전부터 JavaScript를 공부하면서 정리하고 싶었던 ES5와 ES6의 차이 그리고 비교적 최근에 나온 ES11, ES12 문법까지 버전별 특징을 정리해보려고 한다.
 <br/><br/>
 # ECMAScript란?
 위에서 언급한 ES는 ECMAScript로, 자바스크립트를 표준화하기 위해 만들어졌으며 Ecma International이 ECMA-262 기술 규격에 따라 정의하고 있는 표준화된 스크립트 프로그래밍 언어를 말한다. 
@@ -42,35 +42,42 @@ published: true
 
 # ES6(ES2015)
 2015년 6월에 나왔으며, 6판에는 클래스와 모듈 같은 복잡한 응용 프로그램을 작성하기 위한 새로운 문법이 추가되었다. 
-하지만 이러한 문법의 의미는 5판의 strict mode와 같은 방법으로 정의된다. 이 판은 "ECMAScript Harmony" 혹은 "ES6 Harmony" 등으로 불리기도 한다.
+하지만 이러한 문법의 의미는 5판의 strict mode와 같은 방법으로 정의된다.
 <br/>
-**추가된 문법과 자세한 특징은 아래 정리하였다.
+**(추가된 문법과 자세한 특징은 아래 별도 정리)**
 
 <br/>
 # ES7(ES2016) / ES8(ES2017) / ES9(ES2018) / ES10(ES2019)
 - ES7(2016.6)
 <br/> 
-1) 제곱연산자 추가 <br/>
-2) Array.prototype.includes <br/>
+1) Exponentiation oprator 추가 <br/>
+2) Array.prototype.includes 추가 <br/>
 
 - ES8(2017.6)
 <br/> 
 1) 함수 표현식의 인자에서 trailing commas 허용  <br/>
 2) Object values/entries 메소드  <br/>
-3) async/await 등..  <br/>
+3) Object.getOwnPropertyDescriptors <br/>
+4) Async functions  <br/>
 
 - ES9(2018.6) 
 <br/>
 1) Promise.finally <br/>
 2) Async iteration <br/>
-3) object rest/spread property 등.. <br/>
+3) object rest/spread property 
+4) 정규표현식 <br/><br/>
+```
+async / await
+는 ES6에서 callback hell을 해결하기 위해 Promise가 도입된 것처럼 async / await도 Promise처럼 callback 을 해결할 뿐만 아니라 더 직관적이고 단순한 코드를 만들 수 있다.
+```
 
 - ES10(2019.6) 
 <br/> 
-1) Object.fromEntries<br/>
-2) flat, flatMap<br/>
-3) Symbol.description <br/>
-4) optional catch 등.. <br/>
+1) Object.fromEntries <br/>
+2) trimStart() 와 trimEnd() <br/>
+3) flat, flatMap<br/>
+4) Symbol.description <br/>
+5) optional catch <br/>
 
 
 <br/><br/>

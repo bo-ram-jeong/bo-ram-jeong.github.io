@@ -50,25 +50,25 @@ published: true
 # ES7(ES2016) / ES8(ES2017) / ES9(ES2018) / ES10(ES2019)
 - ES7(2016.6)
 <br/> 
-1) Exponentiation oprator 추가 <br/>
-2) Array.prototype.includes 추가 <br/>
+1) Exponentiation oprator <br/>
+2) Array.prototype.includes <br/>
 
 - ES8(2017.6)
 <br/> 
 1) 함수 표현식의 인자에서 trailing commas 허용  <br/>
-2) Object values/entries 메소드  <br/>
+2) Object values/entries  <br/>
 3) Object.getOwnPropertyDescriptors <br/>
-4) Async functions <br/>
+4) Async functions <br/><br/>
 ```
 async / await 는 ES6에서 callback hell을 해결하기 위해 Promise가 도입된 것처럼 
 async / await도 Promise처럼 callback 을 해결할 뿐만 아니라 더 직관적이고 단순한 코드를 만들 수 있다.
 ```
-<br/>
+
 - ES9(2018.6) 
 <br/>
 1) Promise.finally <br/>
 2) Async iteration <br/>
-3) object rest/spread property 
+3) object rest/spread property <br/>
 4) 정규표현식 <br/>
 
 - ES10(2019.6) 
@@ -79,19 +79,125 @@ async / await도 Promise처럼 callback 을 해결할 뿐만 아니라 더 직�
 4) Symbol.description <br/>
 5) optional catch <br/>
 
-
 <br/><br/>
 
 ---
 
 <br/>
 
-# ES6(ES2015) 특징
-<br/><br/>
-# ES11(ES2019) 특징
-<br/><br/>
-# ES12(ES2021) 특징
+# ES6(ES2015) 주된 특징
+## 1) Default Parameters 
+## 2) Template Literals 
+## 3) Multi-line Strings
+## 4) Destructuring Assignment
+## 5) Enhanced Object Literals
+## 6) Arrow Functions
+## 7) Promises
+## 8) Block-Scoped Constructs Let and Const
+## 9) Classes
+## 10) Modules
+## 11) String Method
+## 12) Shorthand property names
+## 13) spread syntax
+## 14) ternary operator
 
+<br/><br/>
+# ES11(ES2019) 주된 특징
+## 1) Optional chaining
+## 2) Nullish Coalescing Operator
+
+<br/><br/>
+# ES12(ES2021) 주된 특징
+## 1) String.prototype.replaceAll()
+String.prototype.replaceAll 메소드는 정규식에 g옵션으로 전역으로 적용하지 않고 문자열의 지정한 모든 문자열을 특정 문자열의 값으로 변경할 수 있다.
+```js
+const string="Hello!"
+
+// before
+console.log(string.replace(/l/,"#")) 	//He#lo
+console.log(string.replace(/l/g,"#")) 	//He##o 
+
+// after
+console.log(string.replaceAll("l","#")) 	//He##o	
+```
+
+## 2) Promise.any()
+Promise.any<br/> 
+: 프로미스 중에 가장 먼저 첫 번째로 이행된(해결된) 프로미스가 생기면 단락되고 해당 객체 반환한다. Promise.any()는 약속이 이행되지 않으면 AggregateError로 거부한다.
+<br/><br/>  
+Promise.race<br/> 
+: 프로미스 중에 가장 먼저 완료된 결과값으로 이행/거부
+<br/><br/> 
+**Promise.any()는 약속이 먼저 거부되더라도 이행할 첫 번째 약속으로 해결하기 때문에, 이 부분이 첫 번째 약속으로 해결하거나 거부하는 Promise.race() 와 대조됨**
+
+## 3) WeakRefs
+WeakRef는 약한 참조(Weak References)를 의미한다. 
+<br/> **약한 참조 => 가비지컬렉터 대상(언제든지 객체를 없애고 메모리를 뻇어올 수 있다)**
+<br/> **가비지 컬렉터 => 사용하지 않는 객체를 메모리에서 자동으로 해제해줌(참조가 걸려있으면 메모리에서 제거되지 않음)**
+<br/><br/>
+약한 참조의 주요 용도는 캐시 또는 대형 개체에 대한 매핑을 구현하는 것이며 이러한 기능은 드물게 사용되는 캐시 또는 매핑을 저장하는데 오랜 시간 동안 메모리를 유지하고 싶지 않은 경우 사용한다.
+<br/><br/>
+```js
+// EX1)
+// deref()는 참조에 접근하기 위해 사용
+let user = {name:"mike",age:30};
+const weakUser = new WeakRef(user);
+user = null;
+const timer = setInterval(()=>{
+	const wUser = weakUser.deref();
+	if(wUser){
+		console.log(wUser.name);
+	} else{
+		console.log("제거되었습니다");
+		clearInterval(timer);
+	}
+},1000)
+// 결과: 일곱번 마이크 이름이 찍히고 "제거되었습니다" 찍힘 ==> weakref는 특정객체를 일정시간 만큼만 캐시하도록 사용하기도 함
+
+// EX2)
+class MyCache{
+	constructor(){
+		this.cache={};
+	}
+	add(key,obj){
+		this.cache[key]=new WeakRef(obj)	//weakref가 아닌 obj를 넣어줄 경우 강한 참조가됨
+	}
+	get(key){	//add로 넣어준 객체를 다시 읽을때 사용
+		let cachedRef=this.cache[key].deref();
+		if(cachedRef){	//지워졌을 수 있기 때문에 if문으로 있는지 없는지 항상 확인 필요. 
+			return cachedRef
+		}else{
+			return false
+		}
+	}	
+}
+// 만약 WeakRef(obj)가 아닌 obj를 넣어주게되면 전달해 준 객체가 사라진다해도, 가비지가 된다하더라도 GC 대상으로 인식하지 못하기 때문에 문제발생. 따라서 WeakRef가 그런 문제를 방지함
+
+```
+
+## 4) Logical assignment operators
+**논리 할당 연산자**
+<br/>다음과 같이 기존의 논리 연산자들을 축약할 수 있다.
+```js
+
+// before
+num = num || 0; // name이 잘못된 값일 경우 할당
+name = name && `Hello ${name}`; // name이 올바른 값일 경우 할당
+name = name ?? "Mike"; // name이 null이나 undefined일 경우 Mike 할당
+
+// after
+num ||= 0;
+name &&= `Hello ${name}`;
+name ??= "Mike"; //Nullish coalescing operator(null 병합 연산자)
+
+```
+
+## 5) Numeric separators
+**숫자구분자**
+<br/>숫자 구분 기호는 _ 를 사용해 숫자를 시각적으로 더 읽기 쉽게 만들어준다.
+```js
+let billion = 1_000_000_000 // 10억(,구분자는 인식못함 _로 구분해야함)
+```      
 
 <br/><br/>
 # 마무리

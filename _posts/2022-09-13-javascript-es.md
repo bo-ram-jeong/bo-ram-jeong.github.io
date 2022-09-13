@@ -104,7 +104,33 @@ async / await도 Promise처럼 callback 을 해결할 뿐만 아니라 더 직�
 <br/><br/>
 # ES11(ES2019) 주된 특징
 ## 1) Optional chaining
+```?.``` 연산자를 사용하면 지저분한 방어 로직이나 유틸리티 라이브러리 없이 안전하고 깔끔하게 속성값에 접근할 수 있다.
+객체의 속성을 접근할 때 ```.``` 연산자 대신에 ```?.``` 연산자를 사용하면, 해당 객체가 nullish 즉, undefined나 null인 경우에 TypeError 대신에 undefined를 얻게 된다.
+```js
+let user = {name: {first: "boram", last: "Jeong"}}
+
+> user?.name?.first
+'boram'
+> user?.address?.street
+undefined
+```
 ## 2) Nullish Coalescing Operator
+Nullish coalescing operator(??)는 논리 연산자로
+왼쪽 피연산자가 null이나 undefined일 때, 오른쪽 피연산자를 return한다.
+반대의 경우면, 왼쪽 피연산자가 return된다.
+```js
+let a = null ?? 'hello';
+let b = '' ?? true;
+let c = false ?? true;
+let d = 0 ?? 1;
+let e = undefined ?? 'world'; 
+
+console.log(a);	// 'hello'
+console.log(b); // ''
+console.log(c); // false
+console.log(d); // 0
+console.log(e); // 'world'
+```
 
 <br/><br/>
 # ES12(ES2021) 주된 특징
@@ -122,17 +148,21 @@ console.log(string.replaceAll("l","#")) 	//He##o
 ```
 
 ## 2) Promise.any()
-Promise.any<br/> 
+Promise.any <br/>
 : 프로미스 중에 가장 먼저 첫 번째로 이행된(해결된) 프로미스가 생기면 단락되고 해당 객체 반환한다. Promise.any()는 약속이 이행되지 않으면 AggregateError로 거부한다.
-<br/><br/>  
-Promise.race<br/> 
+
+<br/>
+
+Promise.race <br/> 
 : 프로미스 중에 가장 먼저 완료된 결과값으로 이행/거부
-<br/><br/> 
+
+<br/>
+
 **Promise.any()는 약속이 먼저 거부되더라도 이행할 첫 번째 약속으로 해결하기 때문에, 이 부분이 첫 번째 약속으로 해결하거나 거부하는 Promise.race() 와 대조됨**
 
 ## 3) WeakRefs
 WeakRef는 약한 참조(Weak References)를 의미한다. 
-<br/> **약한 참조 => 가비지컬렉터 대상(언제든지 객체를 없애고 메모리를 뻇어올 수 있다)**
+<br/><br/> **약한 참조 => 가비지컬렉터 대상(언제든지 객체를 없애고 메모리를 뻇어올 수 있다)**
 <br/> **가비지 컬렉터 => 사용하지 않는 객체를 메모리에서 자동으로 해제해줌(참조가 걸려있으면 메모리에서 제거되지 않음)**
 <br/><br/>
 약한 참조의 주요 용도는 캐시 또는 대형 개체에 대한 매핑을 구현하는 것이며 이러한 기능은 드물게 사용되는 캐시 또는 매핑을 저장하는데 오랜 시간 동안 메모리를 유지하고 싶지 않은 경우 사용한다.
@@ -202,8 +232,8 @@ let billion = 1_000_000_000 // 10억(,구분자는 인식못함 _로 구분해�
 <br/><br/>
 # 마무리
 주로 실무에서 많이 사용한다는 ES6문법과 ES11문법에서 일부만 또는 프로젝트에서 코딩하면서 필요한 문법만 그때 그때 이해하고 사용하다보니 머릿속에서 정리가 깔끔히 되지 않는 느낌이었다.
-<br/>이렇게 전체적인 ECMAScript의 버전별로 구조적인 부분을 정리해보니 확실히 더 이해가 잘 되었고 정리하다보니 놓치고 있던 문법들도 정확히 알 수 있었던 시간이 되어서 너무나 유익한 시간이었다.
-<br/>왜 ES5에서 ES6로 버전이 업데이트 되었는지, 왜 이 문법이 추가가 되었는지 버전마다 문법이 비교가 되면서 지금의 ES2021까지 어떻게 업데이트 되었는지 이해되는 시간이었다.
+<br/><br/>이렇게 전체적인 ECMAScript의 버전별로 구조적인 부분을 정리해보니 확실히 더 이해가 잘 되었고 정리하다보니 놓치고 있던 문법들도 정확히 알 수 있었던 시간이 되어서 너무나 유익한 시간이었다.
+<br/><br/>왜 ES5에서 ES6로 버전이 업데이트 되었는지, 왜 이 문법이 추가가 되었는지 버전마다 문법이 비교가 되면서 지금의 ES2021까지 어떻게 업데이트 되었는지 이해되는 시간이었다.
 
 
 <br/>

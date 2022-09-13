@@ -58,18 +58,18 @@ published: true
 1) 함수 표현식의 인자에서 trailing commas 허용  <br/>
 2) Object values/entries 메소드  <br/>
 3) Object.getOwnPropertyDescriptors <br/>
-4) Async functions  <br/>
-
+4) Async functions <br/>
+```
+async / await 는 ES6에서 callback hell을 해결하기 위해 Promise가 도입된 것처럼 
+async / await도 Promise처럼 callback 을 해결할 뿐만 아니라 더 직관적이고 단순한 코드를 만들 수 있다.
+```
+<br/>
 - ES9(2018.6) 
 <br/>
 1) Promise.finally <br/>
 2) Async iteration <br/>
 3) object rest/spread property 
-4) 정규표현식 <br/><br/>
-```
-async / await
-는 ES6에서 callback hell을 해결하기 위해 Promise가 도입된 것처럼 async / await도 Promise처럼 callback 을 해결할 뿐만 아니라 더 직관적이고 단순한 코드를 만들 수 있다.
-```
+4) 정규표현식 <br/>
 
 - ES10(2019.6) 
 <br/> 

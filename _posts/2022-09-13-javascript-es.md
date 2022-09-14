@@ -86,20 +86,208 @@ async / await도 Promise처럼 callback 을 해결할 뿐만 아니라 더 직�
 <br/>
 
 # ES6(ES2015) 주된 특징
-## 1) Default Parameters 
+## 1) Default Parameters
+**기본 매개변수**
+함수를 호출할 때, 인자값 없이 보냈을 때를 대비하여 파라미터에 디폴트값을 정해놓는다.
+```js
+//es5
+var example = (a, b) => {
+  console.log(a, b);
+};
+
+example("a");
+//a undefined
+
+//es6
+const example = (a, b = "b") => {
+  console.log(a, b);
+};
+
+example("a");
+//a b
+```
 ## 2) Template Literals 
-## 3) Multi-line Strings
-## 4) Destructuring Assignment
-## 5) Enhanced Object Literals
-## 6) Arrow Functions
-## 7) Promises
-## 8) Block-Scoped Constructs Let and Const
-## 9) Classes
-## 10) Modules
-## 11) String Method
-## 12) Shorthand property names
-## 13) spread syntax
-## 14) ternary operator
+템플릿 리터럴은 작은 따옴표('), 큰 따옴표(") 대신 백틱(`)으로 문자열을 감싸 표현하는 기능을 말한다. 이는 문자열을 중간에 추가할 때 '+'를 사용할 필요없이 백틱 사이에 ${문자열}을 넣어 추가할 수 있다.
+```js
+//es5
+let age = 24;
+let name = "정보람"
+console.log(name + "의 나이는 " + age + "입니다.")
+
+//es6
+let age = 24;
+let name = "정보람"
+console.log(`${name}의 나이는 ${age}입니다.`)
+```
+## 3) Destructuring Assignment
+**구조 분해 할당**
+배열이나 Object 형태에서 속성을 해제하여 변수로 할당하는 방식을 의미한다. 따라서 어떤 것을 복사한 이후에 변수로 복사해준다는 의미인데, 이 과정에서 분해 혹은 파괴되지 않는다는 특징이 있다.
+```js
+// Array
+const example = [ 1, 2, 3 ] 
+const [x,y,z] = example;
+console.log(x,y,z); // 1 2 3
+
+// Object 
+const me = {
+	name: "boram",
+	age: "24",
+	hobby: "Watching movies"
+}
+
+const { name, age, hobby } = me;
+console.log(name, age, hobby); //boram 24 Watching movies
+```
+## 4) Enhanced Object Literals
+향상된 객체 리터럴은 기존 자바스크립트에서 사용하던 객체 정의 방식을 개선한 문법으로 자주 사용하던 문법들을 좀 더 간결하게 사용할 수 있도록 객체 정의 형식을 변경하였다.
+```js
+// es5
+var boram = {
+  // 속성: 값
+  language: 'javascript',
+  coding: function() {
+    console.log('Hello World~');
+  }
+};
+
+// es6
+let language = 'javascript';
+let boram = {
+  // language: language,  //속성과 값이 같으면 아래와 같이 축약 가능
+  language
+  coding() {  //속성에 함수를 정의할 때 function 예약어 생략 가능
+    console.log('Hello World~');
+  }
+};
+
+console.log(josh); // {language: "javascript"}
+josh.coding(); // Hello World~
+```
+## 5) Arrow Functions
+**화살표 함수**
+화살표 함수는 javascript에서 함수를 정의하는 function 키워드 없이 함수를 만들 수 있다.
+```js
+// es5
+function func(name) {
+  return `hello ${name}`;
+}
+
+// es6
+// 함수 func는 화살표(=>) 우측의 표현식(expression)을 평가하고, 평가 결과 반환
+const func = (name) => {
+  return `hello ${name}`;
+};
+
+// return 키워드를 사용하지 않아도 됨
+// 파라미터가 하나밖에 없다면 파라미터를 감싸는 괄호 생략 가능
+// 괄호를 생략하면 코드 길이를 더 줄일 수 있음
+const func = name => `hello ${name}`;
+```
+## 6) Promises
+자바스크립트의 비동기 콜백 지옥을 해결해 줄 기법이 추가되었다.
+```
+> Promise는 new 로 생성하고 함수로 전달받는데 인수는 resolve와 reject이다.
+> 어떤일이 완료된이후, 실행되는 함수를 콜백(callback) 함수라 하는데, 콜백 지옥은 함수 안에 함수 호출로 depth가 깊어지면서 콜백을 호출하는 것을 말한다. 주로 이벤트 처리나 서버 통신과 같은 비동기적인 작업을 수행하기 위해 이런 형태가 자주 등장하는데, 가독성이 떨어지면서 코드를 수정하기 어려운 단점이 있어, 이를 해결하기 위해 나온것이 Promise이다. 
+
+> 프로미스 객체는 state와 result를 프로퍼티로 가진다.
+- state: pending(대기)
+- result: undefined
+
+- state: fulfilled(이행됨)
+- result: value
+
+- state: rejected(거부됨)
+- result: error
+
+// EX1) 콜백 지옥
+const f1=(callback)=>{
+	return new promise((res,rej)=>{
+		setTimeout(()=>{
+			res("1번완료")
+		},1000)
+	}
+}
+const f2=(callback)=>{
+	return new promise((res,rej)=>{
+		setTimeout(()=>{
+			res("2번완료")
+		},3000)
+	}
+}
+const f3=(callback)=>{
+	return new promise((res,rej)=>{
+		setTimeout(()=>{
+			res("3번완료")
+		},2000)
+	}
+}
+
+f1(function(){
+	f2(function(){
+    ...
+		// 함수 안에 함수 호출로 depth가 깊어지면서 콜백을 호출 -> 콜백지옥
+    ...
+	}
+}
+
+// EX2) Promises chaining
+f1()
+.then((res)=>f2(res))
+.then((res)=>f3(res))
+.then((res)=>console.log(res))
+.catch(console.log)
+.finally(()=>{console.log("끝")})	// 모두 기다려서 합한 6초가 걸림
+
+// EX3) 모든 시간 기다리지 않고 한꺼번에 동시처리하는 Promise.all
+Promise.all([f1(),f2(),f3()]).then((res=>{	//제일 긴 3초가 걸림
+	console.log(res)
+})
+// => f1 f2 f3중에 하나라도 에러이거나 누락되면 페이지를 보여줄 수 없도록 에러 처리할 때 사용
+```
+
+## 7) Block-Scoped Constructs Let and Const
+## 8) Classes
+클래스는 new를 통해 호출하면 실행되고 객체를 초기화하기 위한 값이 constructor에 정의되어 있다. constructor는 객체를 만들어주는 생성자 메소드이다.
+```js
+class User{
+	constructor(name,age){
+		this.name=name
+		this.age=age
+	}
+	showName(){
+		console.log(this.name)
+	}
+}
+```
+## 9) Modules
+모듈은 실현가능한 특정 프로그램의 그룹으로 ES6부터는 export, import로 모듈을 관리할 수 있고
+export와 import로 재사용 가능한 구성요소를 작성할 수 있다. export로 모듈을 내보낼 수 있고, import로 원하는 모듈을 가져와 사용할 수 있다.
+둘 이상의 모듈을 import하려는 경우 import { 임포트 하려는 모듈 } from '임포트하려는 모듈이 들어있는 파일의 경로'의 형식으로 사용할 수 있다.
+```import{ a, b, c } from './modules'```
+
+## 10) spread syntax
+배열 혹은 Object 형태에서 기존에 있는 값을 그대로 유지해서 불러오는 방법으로 구조 분배 할당(destructuring)등에 다양하게 활용할 수 있다.
+```js
+
+// 배열
+const example = [1,2,3];
+console.log(...example);		//1 2 3
+
+// Object
+const example1 = {
+	name: 'boram',
+  age: 24,
+};
+
+const example2 = {
+  hobby: 'Watching movies',
+} 
+
+const user = {
+	...example1,
+	...example2,
+}
+```
 
 <br/><br/>
 # ES11(ES2019) 주된 특징
@@ -149,7 +337,7 @@ console.log(string.replaceAll("l","#")) 	//He##o
 
 ## 2) Promise.any()
 Promise.any <br/>
-: 프로미스 중에 가장 먼저 첫 번째로 이행된(해결된) 프로미스가 생기면 단락되고 해당 객체 반환한다. Promise.any()는 약속이 이행되지 않으면 AggregateError로 거부한다.
+: 프로미스 중에 가장 먼저 첫 번째로 이행된(해결된) 프로미스가 생기면 단락되고 해당 객체 반환. 만약, Promise.any()는 약속이 이행되지 않으면 AggregateError로 거부.
 
 Promise.race <br/> 
 : 프로미스 중에 가장 먼저 완료된 결과값으로 이행/거부
@@ -208,7 +396,7 @@ class MyCache{
 ```js
 
 // before
-num = num || 0; // name이 잘못된 값일 경우 할당
+num = num || 0; // num이 잘못된 값일 경우 0 할당
 name = name && `Hello ${name}`; // name이 올바른 값일 경우 할당
 name = name ?? "Mike"; // name이 null이나 undefined일 경우 Mike 할당
 

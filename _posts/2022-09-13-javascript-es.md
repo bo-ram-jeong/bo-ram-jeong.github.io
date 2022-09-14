@@ -187,7 +187,9 @@ const func = name => `hello ${name}`;
 자바스크립트의 비동기 콜백 지옥을 해결해 줄 기법이 추가되었다.
 ```
 > Promise는 new 로 생성하고 함수로 전달받는데 인수는 resolve와 reject이다.
-> 어떤일이 완료된이후, 실행되는 함수를 콜백(callback) 함수라 하는데, 콜백 지옥은 함수 안에 함수 호출로 depth가 깊어지면서 콜백을 호출하는 것을 말한다. 주로 이벤트 처리나 서버 통신과 같은 비동기적인 작업을 수행하기 위해 이런 형태가 자주 등장하는데, 가독성이 떨어지면서 코드를 수정하기 어려운 단점이 있어, 이를 해결하기 위해 나온것이 Promise이다. 
+> 어떤일이 완료된이후, 실행되는 함수를 콜백(callback) 함수라 하는데, 콜백 지옥은 함수 안에 함수 호출로 depth가 깊어지면서 콜백을 호출하는 것을 말한다. 
+주로 이벤트 처리나 서버 통신과 같은 비동기적인 작업을 수행하기 위해 이런 형태가 자주 등장하는데, 
+가독성이 떨어지면서 코드를 수정하기 어려운 단점이 있어, 이를 해결하기 위해 나온것이 Promise이다. 
 
 > 프로미스 객체는 state와 result를 프로퍼티로 가진다.
 - state: pending(대기)
@@ -198,7 +200,8 @@ const func = name => `hello ${name}`;
 
 - state: rejected(거부됨)
 - result: error
-
+```
+```js
 // EX1) 콜백 지옥
 const f1=(callback)=>{
 	return new promise((res,rej)=>{
@@ -255,9 +258,11 @@ class User{
 		this.age=age
 	}
 	showName(){
-		console.log(this.name)
+		console.log(`${this.name} : ${this.age}`)
 	}
 }
+const User = new User('정보람', 24);
+User.showName(); // 크리스 : 24
 ```
 ## 9) Modules
 모듈은 실현가능한 특정 프로그램의 그룹으로 ES6부터는 export, import로 모듈을 관리할 수 있고
@@ -268,10 +273,9 @@ export와 import로 재사용 가능한 구성요소를 작성할 수 있다. ex
 ## 10) spread syntax
 배열 혹은 Object 형태에서 기존에 있는 값을 그대로 유지해서 불러오는 방법으로 구조 분배 할당(destructuring)등에 다양하게 활용할 수 있다.
 ```js
-
-// 배열
+// Array
 const example = [1,2,3];
-console.log(...example);		//1 2 3
+console.log(...example);	//1 2 3
 
 // Object
 const example1 = {

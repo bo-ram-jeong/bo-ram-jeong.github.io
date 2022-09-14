@@ -87,7 +87,7 @@ async / await도 Promise처럼 callback 을 해결할 뿐만 아니라 더 직�
 
 # ES6(ES2015) 주된 특징
 ## 1) Default Parameters
-**기본 매개변수**
+**기본 매개변수** <br/>
 함수를 호출할 때, 인자값 없이 보냈을 때를 대비하여 파라미터에 디폴트값을 정해놓는다.
 ```js
 //es5
@@ -120,7 +120,7 @@ let name = "정보람"
 console.log(`${name}의 나이는 ${age}입니다.`)
 ```
 ## 3) Destructuring Assignment
-**구조 분해 할당**
+**구조 분해 할당** <br/>
 배열이나 Object 형태에서 속성을 해제하여 변수로 할당하는 방식을 의미한다. 따라서 어떤 것을 복사한 이후에 변수로 복사해준다는 의미인데, 이 과정에서 분해 혹은 파괴되지 않는다는 특징이 있다.
 ```js
 // Array
@@ -164,7 +164,7 @@ console.log(josh); // {language: "javascript"}
 josh.coding(); // Hello World~
 ```
 ## 5) Arrow Functions
-**화살표 함수**
+**화살표 함수** <br/>
 화살표 함수는 javascript에서 함수를 정의하는 function 키워드 없이 함수를 만들 수 있다.
 ```js
 // es5
@@ -248,7 +248,58 @@ Promise.all([f1(),f2(),f3()]).then((res=>{	//제일 긴 3초가 걸림
 // => f1 f2 f3중에 하나라도 에러이거나 누락되면 페이지를 보여줄 수 없도록 에러 처리할 때 사용
 ```
 
-## 7) Block-Scoped Constructs Let and Const
+## 7) var / let / const
+es6 이전까지는 var를 사용하였지만 여러 이슈에 따라 es6부터는 let과 const를 권장한다. <br/><br/>
+
+* 호이스팅 : scope 내부 어디서든 선언이 최상위에 선언된 것처럼 행동하는 것을 말함 <br/>
+* 초기화: undefined를 할당해주는 단계 <br/>
+* TDZ(Temporal Dead Zone) : 선언 전에 변수를 사용하는 것을 비 허용하는 개념상의 공간 <br/><br/>
+
+**변수의 생성과정은 아래와 같다.** 
+<br/>
+1) 선언단계 <br/>
+2) 초기화단계 <br/>
+3) 할당단계 <br/>
+
+이때, <br/><br/>
+
+**var는** <br/>
+1) 선언 및 초기화단계(동시) <br/>
+2) 할당단계 <br/>
+따라서 할당 전에 호출하면 undefined가 뜬다 <br/><br/>
+
+**let은** <br/>
+1) 선언단계 <br/>
+2) 초기화단계 <br/>
+3) 할당단계 <br/>
+이므로 호출했을때 초기화 되기 때문에 할당 전에 호출하면 ReferenceError를 내뱉는다<br/><br/>
+
+**const는** <br/>
+선언 + 초기화 + 할당 동시에(나중에 var, let처럼 변경할 수 없기 때문)
+
+<br/>
+
+====================================================================================================================
+
+<br/>
+
+**var** <br/> 
+- 한번 선언된 변수 다시 선언 가능 <br/> 
+- 선언 전에 사용 가능(선언은 호이스팅 되지만 값 할당은 호이스팅이 안되므로 상태는 undefined) <br/> 
+- 함수 스코프(오로지 함수의 코드 블록만을 지역 스코프로 인정)
+
+<br/><br/> 
+
+**let** <br/> 
+- 한번 선언된 변수 다시 선언하면 에러(만약 변수가 다른 블록에 있다면 가능) <br/> 
+- let도 호이스팅이 되지만 TDZ의 영향으로 선언 전에 사용하면 에러
+<br/><br/> 
+**(let과 const는 TDZ에 영향을 받기 때문에 값을 할당 받기 전엔 사용할 수 없다)**
+<br/> 
+- 블록 스코프(블록({})의 예로는 함수, if, for, while, try/catch 등이 있다)
+**(모든 코드블록에서 선언된 변수는 코드블록에서만 유효하며 외부에선 접근할 수 없음(=> 지역변수))**
+
+
 ## 8) Classes
 클래스는 new를 통해 호출하면 실행되고 객체를 초기화하기 위한 값이 constructor에 정의되어 있다. constructor는 객체를 만들어주는 생성자 메소드이다.
 ```js
@@ -275,11 +326,11 @@ export와 import로 재사용 가능한 구성요소를 작성할 수 있다. ex
 ```js
 // Array
 const example = [1,2,3];
-console.log(...example);	//1 2 3
+console.log(...example); //1 2 3
 
 // Object
 const example1 = {
-	name: 'boram',
+  name: 'boram',
   age: 24,
 };
 

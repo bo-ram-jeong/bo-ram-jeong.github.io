@@ -31,9 +31,9 @@ page router가 익숙해질때쯤 app router를 사용해보고 싶은 생각이
 <br/><br/>
 ```
 기존 src 아래 **pages** 폴더가 **app** 폴더로 폴더명이 변경되었으며,
-<br/>
+
 **_app.tsx**와 **_document.tsx**가 없어지고 이 2개의 역할을 **layout.tsx**가 한다.
-<br/>
+
 또한, 기존 **index.tsx**가 **page.tsx**로 폴더명이 바뀐것이 큰 차이점인 것 같다.
 ```
 

@@ -41,7 +41,7 @@ _app.tsx와 _document.tsx가 없어지고 이 2개의 역할을 layout.tsx가 �
 예를 들어, 로그인 전과 후의 화면이 달라질 경우, 각각의 layout.tsx를 만들어 줄 수 있는데 <br/>
 이때, 괄호로 감싸준 폴더명을 만들어줌으로써 라우팅엔 관여를 하지 않도록 하고 해당 폴더만의 layout.tsx를 각각 만들어 줄 수 있다.
 <br/>
-<img src="https://github.com/bo-ram-jeong/bo-ram-jeong.github.io/assets/84834172/90619244-0967-4e91-8e30-823de0ce39d6" width="100" height="200">
+<img src="https://github.com/bo-ram-jeong/bo-ram-jeong.github.io/assets/84834172/90619244-0967-4e91-8e30-823de0ce39d6" width="150" height="250">
 <br/>
 
 ### 2. 레이아웃 기능

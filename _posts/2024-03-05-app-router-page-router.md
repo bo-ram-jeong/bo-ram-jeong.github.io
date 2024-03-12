@@ -27,7 +27,7 @@ page router가 익숙해질때쯤 app router를 사용해보고 싶은 생각이
 따라서, 이번 블로그에서는 App Router VS Page Router 에 대해 비교해보며 둘의 장단점은 무엇인지 차이는 무엇인지 앞으로 App Router를 사용함으로써 어떻게 더 활용해볼 수 있는지 알아보았다.
 
 <br/><br/><br/>
-**<i>먼저 App Router와 Page Router의 가시적으로 보이는 큰 차이는 폴더구조인 것 같다.</i>**
+**<i>__먼저 App Router와 Page Router의 가시적으로 보이는 큰 차이는 폴더구조인 것 같다.__</i>**
 <br/>
 ```
 기존 src 아래 pages 폴더가 app 폴더로 폴더명이 변경되었으며,

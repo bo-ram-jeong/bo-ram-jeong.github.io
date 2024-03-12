@@ -30,11 +30,11 @@ page router가 익숙해질때쯤 app router를 사용해보고 싶은 생각이
 <i>먼저 App Router와 Page Router의 가시적으로 보이는 큰 차이는 폴더구조인 것 같다.</i> 
 <br/><br/>
 ```
-기존 src 아래 **pages** 폴더가 **app** 폴더로 폴더명이 변경되었으며,
+기존 src 아래 pages 폴더가 app 폴더로 폴더명이 변경되었으며,
 
-**_app.tsx**와 **_document.tsx**가 없어지고 이 2개의 역할을 **layout.tsx**가 한다.
+_app.tsx 와 _document.tsx 가 없어지고 이 2개의 역할을 layout.tsx 가 한다.
 
-또한, 기존 **index.tsx**가 **page.tsx**로 폴더명이 바뀐것이 큰 차이점인 것 같다.
+또한, 기존 index.tsx 가 page.tsx 로 폴더명이 바뀐것이 큰 차이점인 것 같다.
 ```
 
 <br/><br/>

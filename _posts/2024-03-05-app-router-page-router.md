@@ -29,18 +29,17 @@ page router가 익숙해질때쯤 app router를 사용해보고 싶은 생각이
 <br/><br/>
 먼저 App Router가 가지고 있는 장은 크게 6가지이다. 
 <br/>
-# 각종 폴더 유형 추가로 편한 디렉토리 라우팅
-## 레이아웃 기능
-### 페이지별 권한 체크
-#### 서버 컴포넌트 분리로 인한 최적화
-# 데이터 캐시
-# 서버 액
+#### 각종 폴더 유형 추가로 편한 디렉토리 라우팅 #### 레이아웃 기능 #### 페이지별 권한 체크
+#### 서버 컴포넌트 분리로 인한 최적화 ###### 데이터 캐시 #### 서버 액션
 
 
 
 
-참고 및 출처 : [Next + React Query로 SNS 서비스 만들기] 인프런 강의 중, 
-https://www.inflearn.com/course/next-react-query-sns%EC%84%9C%EB%B9%84%EC%8A%A4/dashboard
+
+
+
+참고 및 출처 : [Next + React Query로 SNS 서비스 만들기] 인프런 강의 중,
+(https://www.inflearn.com/course/next-react-query-sns%EC%84%9C%EB%B9%84%EC%8A%A4/dashboard)
 
 
 

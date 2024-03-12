@@ -28,20 +28,21 @@ page router가 익숙해질때쯤 app router를 사용해보고 싶은 생각이
 
 <br/><br/><br/>
 <i>먼저 App Router와 Page Router의 가시적으로 보이는 큰 차이는 폴더구조인 것 같다.</i> 
+<br/>
 기존 src 아래 **pages** 폴더가 **app** 폴더로 폴더명이 변경되었으며,
 <br/>
-_app.tsx와 _document.tsx가 없어지고 이 2개의 역할을 layout.tsx가 한다.
+**_app.tsx**와 **_document.tsx**가 없어지고 이 2개의 역할을 **layout.tsx**가 한다.
 <br/>
-또한, 기존 index.tsx가 page.tsx로 폴더명이 바뀐것이 큰 차이점인 것 같다.
+또한, 기존 **index.tsx**가 **page.tsx**로 폴더명이 바뀐것이 큰 차이점인 것 같다.
 
-<br/><br/><br/>
+<br/><br/>
 <i>App Router가 가지고 있는 장점은 크게 6가지이다.</i>
 <br/>
 ### 1. 각종 폴더 유형 추가로 편한 디렉토리 라우팅 
 예를 들어, 로그인 전과 후의 화면이 달라질 경우, 각각의 layout.tsx를 만들어 줄 수 있는데 <br/>
 이때, 괄호로 감싸준 폴더명을 만들어줌으로써 라우팅엔 관여를 하지 않도록 하고 해당 폴더만의 layout.tsx를 각각 만들어 줄 수 있다.
 <br/>
-<img src="https://github.com/bo-ram-jeong/bo-ram-jeong.github.io/assets/84834172/90619244-0967-4e91-8e30-823de0ce39d6" width="150" height="250">
+<img src="https://github.com/bo-ram-jeong/bo-ram-jeong.github.io/assets/84834172/90619244-0967-4e91-8e30-823de0ce39d6" width="200" height="300">
 <br/>
 
 ### 2. 레이아웃 기능

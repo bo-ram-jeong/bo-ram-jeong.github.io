@@ -26,9 +26,8 @@ page router가 익숙해질때쯤 app router를 사용해보고 싶은 생각이
 <br/><br/>
 따라서, 이번 블로그에서는 App Router VS Page Router 에 대해 비교해보며 둘의 장단점은 무엇인지 차이는 무엇인지 앞으로 App Router를 사용함으로써 어떻게 더 활용해볼 수 있는지 알아보았다.
 
-<br/><br/>
+<br/>
 ## App Router vs Page Router 
-<br>
 <u>가장 먼저 보이는 차이점 => 폴더 구조</u>
 <br/>
 ```
@@ -37,9 +36,8 @@ page router가 익숙해질때쯤 app router를 사용해보고 싶은 생각이
 3) index.tsx -> page.tsx 로 변경(파일명 변경)
 ```
 
-<br/><br/>
-## App Router 장점
 <br/>
+## App Router 장점
 ### 1. 각종 폴더 유형 추가로 편한 디렉토리 라우팅 
 예를 들어, 로그인 전과 후의 화면이 달라질 경우, 각각의 layout.tsx를 만들어 줄 수 있는데 <br/>
 이때, 괄호로 감싸준 폴더명을 만들어줌으로써 라우팅엔 관여를 하지 않도록 하고 해당 폴더만의 layout.tsx를 각각 만들어 줄 수 있다.

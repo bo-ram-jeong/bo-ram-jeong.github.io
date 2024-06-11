@@ -24,7 +24,7 @@ published: true
 <br/>
 page router가 익숙해질때쯤 app router를 사용해보고 싶은 생각이 들었고 따로 프로젝트를 만들어보며 공부하게 되었다.
 <br/><br/>
-따라서, 이번 블로그에서는 App Router VS Page Router 에 대해 비교해보며 둘의 장단점은 무엇인지 차이는 무엇인지 앞으로 App Router를 사용함으로써 어떻게 더 활용해볼 수 있는지 알아보았다.
+따라서, 이번 블로그에서는 App Router VS Page Router 에 대해 비교해보며 새로 나온 App Router의 장단점은 무엇인지 앞으로 App Router를 사용함으로써 어떻게 더 활용해볼 수 있는지 알아보았다.
 
 <br/>
 ## App Router vs Page Router 
@@ -53,7 +53,9 @@ page router가 익숙해질때쯤 app router를 사용해보고 싶은 생각이
 ### 3. 페이지별 권한 체크
 ### 4. 서버 컴포넌트 분리로 인한 최적화 
 ### 5. 데이터 캐시 
+프론트에서 백엔드로 보낸 요청들을 얼마나 오래 캐싱시킬 수 있는지에 대한 Data Cache 기능이 지원된다.
 ### 6. 서버 액션
+클라이언트 컴포넌트 또는 서버 컴포넌트에서 직접 비동기 코드를 실행시킬 수 있는 Server Actions가 추가되었다. 
 
 
 
